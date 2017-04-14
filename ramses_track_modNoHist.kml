@@ -11,8 +11,8 @@
     </LookAt>
     <Style id="lastPosnIcon">
       <IconStyle>
-        <scale>0.9</scale>
-        <color>ff00ff00</color>
+        <scale>1.4</scale>
+        <color>ffffff00</color>
         <Icon>
           <href>icons/square.png</href>
         </Icon>
