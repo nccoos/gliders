@@ -365,7 +365,7 @@ ctd_time = ctd_time(i);
 % These values chosen from looking at ramses, may need different set for 
 % pelagia
 switch projectLabel
-    case 'LongBay_2012'
+    case 'PEACH_2017' %'LongBay_2012'
         switch strGliderName
             case 'Ramses'
                 ib=find(abs(diff(temp))>1.);
@@ -457,8 +457,10 @@ salin = sw_salt(10*cond/sw_c3515, temp, pres);
 dens = sw_pden(salin, temp, pres, 0);
 
 % calculate glider velocity using horizontal velocity (m_speed) and average depth rate (m_avg_depth_rate)...
-gliderVelocity = sqrt(horizontalVelocity.^2 + avgDepthRate.^2);
-
+% gliderVelocity = sqrt(horizontalVelocity.^2 + avgDepthRate.^2);
+gliderVelocity = sqrt(hv.^2 + avgDepthRate.^2);
+%horizontalVelocity is on dbd time base, hv is on ctd time base, which is
+%the one should be used here.
 
 %% APPLY THERMAL LAG CORRECTION
 % CORRECTION SCHEME:  Pass in a glider velocity vector, so that correctThermalLag() will return
@@ -502,12 +504,15 @@ salinCorrected = sw_salt(10*cond/sw_c3515, tempCorrected, pres);
 % pelagia (now set based on deployment 1)
 
 switch projectLabel
-    case 'LongBay_2012'
+    case 'PEACH_2017' %'LongBay_2012'
         switch strGliderName
             case 'Ramses'
-                iv = find(hv<0.1 | hv > 0.7);
-                ip = find (abs(pitch) < 10.);
-                ib = union(iv,ip);
+%                 iv = find(hv<0.1 | hv > 0.7);
+%                 ip = find (abs(pitch) < 10.);
+%                 ib = union(iv,ip);
+                is = find(salinCorrected < 25);%manually remove that wierd data point
+                ip = find (abs(pitch) < 10. & depth>=25);%for Ramses deployment2 
+                ib = union(ip,is);
                 salinCorrected(ib) = NaN;
             case 'Pelagia'
                 iv = find(hv<0.1);
@@ -527,7 +532,8 @@ end
 i = find(~isnan(salinCorrected));
 ptime_ebd=ptime_ebd(i);  temp=temp(i);  tempCorrected=tempCorrected(i); salin=salin(i);
 salinCorrected=salinCorrected(i); pres=pres(i); dens=dens(i);
-ctd_time = ctd_time(i);
+ctd_time = ctd_time(i); hv=hv(i); pitch= pitch(i); cond=cond(i); 
+gliderVelocity = gliderVelocity(i); avgDepthRate = avgDepthRate(i);
 
 % calculate density...should this use temp corrected?? HES - no, now have
 % best estimate of salinity to combine with originally measured temp
@@ -565,7 +571,7 @@ try
     figure; plot(ptime_datenum,pitch); title('pitch'); datetick('x',6,'keeplimits');
     figure; plot(ptime_datenum,cond); title('cond'); datetick('x',6,'keeplimits');
     figure; plot(ptime_datenum,temp); title('temp'); datetick('x',6,'keeplimits');
-    figure; plot(ptime_datenum,tempCorrected); title('tempCorrected'); datetick('x',6,'keeplimits');
+%     figure; plot(ptime_datenum,tempCorrected); title('tempCorrected'); datetick('x',6,'keeplimits');
     figure; plot(ptime_datenum,salinCorrected); title('salinCorrected'); datetick('x',6,'keeplimits');
 catch err
     disp('Error generated trying to plot. Check x.');
@@ -579,7 +585,8 @@ x.cond = cond;
 x.temp = temp;
 x.tempCorrected = tempCorrected;
 x.salinCorrected = salinCorrected;
-
+x.gliderVelocity = gliderVelocity;
+x.avgDepthRate = avgDepthRate;
 
 %% INTERPOLATE FLIGHT DATE (e.g. GPS) TO SCIENCE (OR CTD) TIME
 % make copies of dbd time stamp vector for use in lat/lon interpolation...
@@ -652,7 +659,8 @@ config = struct('glider_name', strGliderName,...
                 'var_units', units);
 
 % set Level 1 data mat file name...
-strMatFileName = strcat(strGliderName, '_Deployment', strDeploymentNumber, '_CTD_L1.mat');
+% strMatFileName = strcat(strGliderName, '_Deployment', strDeploymentNumber, '_CTD_L1.mat');
+strMatFileName = strcat(strGliderName,'_Deployment', strDeploymentNumber, '_CTD_L1.mat');
 
 % save glider/deployment data to mat file...
 save(strMatFileName,...
@@ -667,7 +675,8 @@ save(strMatFileName,...
      'salin',...
      'salinCorrected',...
      'dens',...
-     'densCorrected');
+     'densCorrected',...
+     'x');
 
 
  %% PLOT STATS

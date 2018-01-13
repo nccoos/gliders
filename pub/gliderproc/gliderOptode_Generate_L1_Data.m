@@ -417,9 +417,9 @@ if debug_Level > 1
     title_String = sprintf('%s %s %s',strGliderName, 'Deployment', strDeploymentNumber);
     legend_String1 = sprintf('%s %s %s','T CTD without interp, without delay');
     figure; plot(ptime_datenum_CTD,ctd.temp,'bo', ptime_datenum,oxyw_temp,'ro'); legend(legend_String1,'oxyw temp'); title(title_String)
-    datetick('x',15,'keeplimits');
+    datetick('x',7,'keeplimits');
     figure; plot(ptime_datenum,oxyw_dphase,'ro'); title(title_String); ylabel('dphase');
-    datetick('x',15,'keeplimits')
+    datetick('x',7,'keeplimits')
 end
 
 % Sample CTD data at a regular interval [SBL]
@@ -473,7 +473,7 @@ if debug_Level > 1
     %figure; loglog(F,abs(H)); title('LP Filter')
     title_String = sprintf('%s %s %s','External T is from CTD Filtered, Delayed',num2str(my_Delay_Secs), 'secs and then Interped to DO time');
     figure; plot(ptime_datenum,tempi,'bo', ptime_datenum,oxyw_temp,'ro'); legend('external','internal'); title(title_String)
-    datetick('x',15,'keeplimits');
+    datetick('x',7,'keeplimits');
 end
 
 
@@ -516,57 +516,57 @@ o2_tscorr = o2_tcorr .* ...
 o2_tspcorr = o2_tscorr .* (1 + (0.04 .* depthi ./ 1000));
 
 
-%% APPLY CAL
-% Apply calibration values (slope and intercept) [SBL]
-switch projectLabel
-    case {'LongBay_2012','SECOORA_2016'}                % Same cal applies to both LongBay_2012 and SECOORA_2016
-        pieceWise = false;
-        switch strGliderName
-            case 'Pelagia'
-                % Pelagia
-                % Only deployment 3 was good wrt o2, but we'll apply the
-                % same cal to all three deployments.
-                if ~pieceWise
-                    cal_Slope = 0.8152;
-                    cal_Intercept = 15.5331;
-                    o2_tspcorr = cal_Slope*o2_tspcorr + cal_Intercept;
-                else
-                    % Try piece-wise linear
-                    pelagia_set1 = (o2_tspcorr<=138.5200);
-                    if ~isempty(pelagia_set1)
-                        o2_tspcorr(pelagia_set1) = 0.9764*o2_tspcorr(pelagia_set1)+7.1456;
-                    end                
-                    pelagia_set2 = (o2_tspcorr>138.5200);
-                    if ~isempty(pelagia_set2)               
-                        o2_tspcorr(pelagia_set2) = 0.6791*o2_tspcorr(pelagia_set2)+48.3350; 
-                    end
-                end
-            case 'Ramses'
-                % Ramses
-                % Deployments 1 and 2 are good wrt o2, but we'll apply the
-                % same cal to all three deployments.
-                if ~pieceWise
-                    cal_Slope = 1.2536;
-                    cal_Intercept = -15.7650;
-                    o2_tspcorr = cal_Slope*o2_tspcorr + cal_Intercept;
-                else
-                    % Try piece-wise linear
-                    ramses_set1 = (o2_tspcorr<=103.4000);
-                    if ~isempty(ramses_set1)
-                        o2_tspcorr(ramses_set1) = 1.0704*o2_tspcorr(ramses_set1)-6.8814;
-                    end
-                    ramses_set2 = (o2_tspcorr>103.4000);
-                    if ~isempty(ramses_set2)
-                        o2_tspcorr(ramses_set2) = 1.3537*o2_tspcorr(ramses_set2)-36.1683;
-                    end
-                end
-            otherwise
-                % Do nothing for now, but add a case for PEACH in the
-                % future.
-        end
-    otherwise
-        error('Unknown project label');
-end
+% %% APPLY CAL
+% % Apply calibration values (slope and intercept) [SBL]
+% switch projectLabel
+%     case {'LongBay_2012','SECOORA_2016','PEACH_2017'}                % Same cal applies to both LongBay_2012 and SECOORA_2016
+%         pieceWise = false;
+%         switch strGliderName
+%             case 'Pelagia'
+%                 % Pelagia
+%                 % Only deployment 3 was good wrt o2, but we'll apply the
+%                 % same cal to all three deployments.
+%                 if ~pieceWise
+%                     cal_Slope = 0.8152;
+%                     cal_Intercept = 15.5331;
+%                     o2_tspcorr = cal_Slope*o2_tspcorr + cal_Intercept;
+%                 else
+%                     % Try piece-wise linear
+%                     pelagia_set1 = (o2_tspcorr<=138.5200);
+%                     if ~isempty(pelagia_set1)
+%                         o2_tspcorr(pelagia_set1) = 0.9764*o2_tspcorr(pelagia_set1)+7.1456;
+%                     end                
+%                     pelagia_set2 = (o2_tspcorr>138.5200);
+%                     if ~isempty(pelagia_set2)               
+%                         o2_tspcorr(pelagia_set2) = 0.6791*o2_tspcorr(pelagia_set2)+48.3350; 
+%                     end
+%                 end
+%             case 'Ramses'
+%                 % Ramses
+%                 % Deployments 1 and 2 are good wrt o2, but we'll apply the
+%                 % same cal to all three deployments.
+%                 if ~pieceWise
+%                     cal_Slope = 1.2536;
+%                     cal_Intercept = -15.7650;
+%                     o2_tspcorr = cal_Slope*o2_tspcorr + cal_Intercept;
+%                 else
+%                     % Try piece-wise linear
+%                     ramses_set1 = (o2_tspcorr<=103.4000);
+%                     if ~isempty(ramses_set1)
+%                         o2_tspcorr(ramses_set1) = 1.0704*o2_tspcorr(ramses_set1)-6.8814;
+%                     end
+%                     ramses_set2 = (o2_tspcorr>103.4000);
+%                     if ~isempty(ramses_set2)
+%                         o2_tspcorr(ramses_set2) = 1.3537*o2_tspcorr(ramses_set2)-36.1683;
+%                     end
+%                 end
+%             otherwise
+%                 % Do nothing for now, but add a case for PEACH in the
+%                 % future.
+%         end
+%     otherwise
+%         error('Unknown project label');
+% end
 
 %% CALC SATURATION
 % use polynomial to calculate DO saturations using the measured temp and

@@ -1,8 +1,6 @@
-% For flight and CTD data, this program converts L0 data to L1 data for the specified
-% glider(s) by calling gliderCTD_Generate_L1_Data. The new L1 mat file is
-% stored in the pwd.
-% Update for peach 2017 glider ramses
-% by Lu Han, 08/2017
+% This is for finding the templag parameters from one chosen ebd and dbd 
+% file in test folder.
+
 
 clear all;
 close all;

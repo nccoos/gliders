@@ -35,20 +35,20 @@ switch dataset_Code
             
             salinCorrectedMedFilt = medfilt1(x.salinCorrected,15);
             ibbDiff = x.salinCorrected - salinCorrectedMedFilt;
-            figure; plot(x.ptime_datenum,ibbDiff); title('ibbDiff'); datetick('x',0,'keeplimits');
+%             figure; plot(x.ptime_datenum,ibbDiff); title('ibbDiff'); datetick('x',0,'keeplimits');
             ibb = find( (x.ptime_datenum >= t_Min) & (x.ptime_datenum < t_Max) & (abs(ibbDiff))>0.2 );
-            subsetx = find(  (x.ptime_datenum >= t_Min) & (x.ptime_datenum < t_Max));
-            
-            figure; plot(x.ptime_datenum(subsetx),x.hv(subsetx),'bo'); title('hv'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.hv(ibb),'ro');
-            figure; plot(x.ptime_datenum(subsetx),x.pitch(subsetx),'bo'); title('pitch'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.pitch(ibb),'ro');
-            figure; plot(x.ptime_datenum(subsetx),x.cond(subsetx),'bo'); title('cond'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.cond(ibb),'ro');
-            figure; plot(x.ptime_datenum(subsetx),x.temp(subsetx),'bo'); title('temp'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.temp(ibb),'ro');
-            figure; plot(x.ptime_datenum(subsetx),x.tempCorrected(subsetx),'bo'); title('tempCorrected'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.tempCorrected(ibb),'ro');
-            figure; plot(x.ptime_datenum(subsetx),x.salinCorrected(subsetx),'bo'); title('salinCorrected'); datetick('x',0,'keeplimits'); hold on; 
-                    plot(x.ptime_datenum(ibb),x.salinCorrected(ibb),'ro'); hold on;
-                    plot(x.ptime_datenum(subsetx),salinCorrectedMedFilt(subsetx),'k+');
-            figure; plot(x.salinCorrected(subsetx),x.tempCorrected(subsetx),'bo'); title('T-S (Corrected)'); hold on;
-                    plot(x.salinCorrected(ibb),x.tempCorrected(ibb),'r+'); 
+%             subsetx = find(  (x.ptime_datenum >= t_Min) & (x.ptime_datenum < t_Max));
+%             
+%             figure; plot(x.ptime_datenum(subsetx),x.hv(subsetx),'bo'); title('hv'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.hv(ibb),'ro');
+%             figure; plot(x.ptime_datenum(subsetx),x.pitch(subsetx),'bo'); title('pitch'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.pitch(ibb),'ro');
+%             figure; plot(x.ptime_datenum(subsetx),x.cond(subsetx),'bo'); title('cond'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.cond(ibb),'ro');
+%             figure; plot(x.ptime_datenum(subsetx),x.temp(subsetx),'bo'); title('temp'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.temp(ibb),'ro');
+%             figure; plot(x.ptime_datenum(subsetx),x.tempCorrected(subsetx),'bo'); title('tempCorrected'); datetick('x',0,'keeplimits'); hold on; plot(x.ptime_datenum(ibb),x.tempCorrected(ibb),'ro');
+%             figure; plot(x.ptime_datenum(subsetx),x.salinCorrected(subsetx),'bo'); title('salinCorrected'); datetick('x',0,'keeplimits'); hold on; 
+%                     plot(x.ptime_datenum(ibb),x.salinCorrected(ibb),'ro'); hold on;
+%                     plot(x.ptime_datenum(subsetx),salinCorrectedMedFilt(subsetx),'k+');
+%             figure; plot(x.salinCorrected(subsetx),x.tempCorrected(subsetx),'bo'); title('T-S (Corrected)'); hold on;
+%                     plot(x.salinCorrected(ibb),x.tempCorrected(ibb),'r+'); 
         catch err
             %throw(err)
         end
@@ -56,8 +56,8 @@ switch dataset_Code
         % For temperature
         try
             T = target_Struct.temp(subset);
-            figure; plot(time,T,'bo-'); datetick('x',6,'keeplimits'); title('Temperature');
-            figure; plot(time,-P,'bo-'); datetick('x',6,'keeplimits'); title('Depth');
+%             figure; plot(time,T,'bo-'); datetick('x',6,'keeplimits'); title('Temperature');
+%             figure; plot(time,-P,'bo-'); datetick('x',6,'keeplimits'); title('Depth');
             ccplot_Glider_Data_t(time,P,T,'Temperature',platform_Label);
             ccplot3_Glider_Data(gpsLon, gpsLat,P,T,[min(T) max(T)],'Temperature', platform_Label);
         catch err
@@ -66,13 +66,29 @@ switch dataset_Code
         % For salinity
         try
             S = target_Struct.salinCorrected(subset); title('Salinity (Corrected)');
-            figure; plot(time,S,'bo-'); datetick('x',6,'keeplimits'); title('Salinity (Corrected)');
+%             figure; plot(time,S,'bo-'); datetick('x',6,'keeplimits'); title('Salinity (Corrected)');
             ccplot_Glider_Data_t(time,P,S,'Salinity (Corrected)',platform_Label);
+            ccplot3_Glider_Data(gpsLon, gpsLat,P,S,[min(S) max(S)],'Salinity (Corrected)', platform_Label);
         catch err
             throw(err)
         end
-        % T-S plots
-        figure; plot(S,T,'bo'); title('T-S (Corrected)');               
+%         ccplot_Glider_Data_t(time,P,abs(target_Struct.x.avgDepthRate(subset)),'avgDepthRate',platform_Label);
+%         ccplot3_Glider_Data(gpsLon, gpsLat,P,abs(target_Struct.x.avgDepthRate(subset)),[min(abs(x.avgDepthRate(subset))) max(abs(x.avgDepthRate(subset)))],'avgDepthRate', platform_Label);
+%        % T-S plots
+%         figure; plot(S,T,'.');
+%         ylabel('T(^oC)');xlabel('S')
+%         title('T-S Diagram (Corrected)');  
+%         figure;
+%         plot(target_Struct.salin(subset),target_Struct.temp(subset),'r.');
+%         ylabel('T(^oC)');xlabel('S')
+%         title('T-S Diagram (Uncorrected)');  
+        figure; plot(S,T,'.');
+        ylabel('T(^oC)');xlabel('S')
+        title('T-S Diagram (Corrected)');  
+        figure;
+        plot(target_Struct.salin(subset),target_Struct.temp(subset),'r.');
+        ylabel('T(^oC)');xlabel('S')
+        title('T-S Diagram (Uncorrected)');            
         % For density
         try
             density = target_Struct.densCorrected(subset); 
@@ -89,17 +105,12 @@ switch dataset_Code
             chlor = target_Struct.chlor(subset); 
             figure; plot(time,chlor,'bo-'); datetick('x',6,'keeplimits'); title('Chlorophyll');
             figure; plot(time,-P,'bo-'); datetick('x',6,'keeplimits'); title('Depth');
+            
+            chlor_Clean = target_Struct.chlor_Clean(subset); 
+            figure; plot(time,log10(chlor_Clean),'bo-'); datetick('x',6,'keeplimits'); title('Log of Chlorophyll, Clean');
 
-            idx_Clean = find(chlor>0 & ~isnan(P) );
-            chlor_Clean = chlor(idx_Clean);
-            time_Clean = time(idx_Clean);
-            P_Clean = P(idx_Clean);
-            gpsLon_Clean = gpsLon(idx_Clean);
-            gpsLat_Clean = gpsLat(idx_Clean);
-            figure; plot(time_Clean,log10(chlor_Clean),'bo-'); datetick('x',6,'keeplimits'); title('Log of Chlorophyll, Clean');
-
-            ccplot_Glider_Data_t(time_Clean,P_Clean,log10(chlor_Clean),'Log of Chlorophyll, Clean',platform_Label);
-            ccplot3_Glider_Data(gpsLon_Clean, gpsLat_Clean,P_Clean,log10(chlor_Clean),[min(log10(chlor_Clean)) max(log10(chlor_Clean))],'Log of Chlorophyll, Clean', platform_Label);
+            ccplot_Glider_Data_t(time,P,log10(chlor_Clean),'Log of Chlorophyll, Clean',platform_Label);
+            ccplot3_Glider_Data(gpsLon, gpsLat,P,log10(chlor_Clean),[min(log10(chlor_Clean)) max(log10(chlor_Clean))],'Log of Chlorophyll, Clean', platform_Label);
             hist_Glider_Data(log10(chlor_Clean),'Log of Chlorophyll, Clean', platform_Label)
 
         catch err
@@ -149,10 +160,68 @@ switch dataset_Code
         % For o2 sat
         try
             o2_sat = target_Struct.o2_sat(subset);
-            figure; plot(time,o2_sat,'bo-'); datetick('x',6,'keeplimits'); title('o2 sat (Corr)');
-            ccplot_Glider_Data_t(time,P,o2_sat,'o2 sat (Corr)',platform_Label);
-            ccplot3_Glider_Data(gpsLon, gpsLat,P,o2_sat,[min(o2_sat) max(o2_sat)],'o2 sat (Corr)', platform_Label);
-            hist_Glider_Data(o2_sat,'o2 sat (Corr)', platform_Label)
+%             figure; plot(time,o2_sat,'bo-'); datetick('x',15,'keeplimits'); title('o2 sat (Corr)');
+            figure; 
+            subplot(2,1,1);
+            plot(time,target_Struct.tempi(subset),'-+')
+            hold on;
+            plot(time,target_Struct.oxyw_temp(subset),'-+')
+            legend('tempi','oxyw\_temp');
+            xlabel('Time');
+            ylabel('Temperature (^oC)')
+            datetick
+%             figure
+%             plot(target_Struct.oxyw_oxygen(subset),target_Struct.oxyw_temp(subset),'*-')
+%             hold on
+%             plot(target_Struct.oxyw_oxygen(subset),target_Struct.tempi(subset),'+-')
+%             legend('oxyw\_temp','tempi');
+%             title('oxyw\_oxygen')
+%             figure
+%             plot(target_Struct.o2_tspcorr(subset),target_Struct.oxyw_temp(subset),'*-')
+%             hold on
+%             plot(target_Struct.o2_tspcorr(subset),target_Struct.tempi(subset),'+-')
+%             legend('oxyw\_temp','tempi');
+%             title('o2\_tspcorr')
+            subplot(2,1,2);
+            plot(target_Struct.oxyw_oxygen(subset),target_Struct.tempi(subset),'*-')
+            hold on
+            plot(target_Struct.o2_tspcorr(subset),target_Struct.tempi(subset),'+-')
+            legend('oxyw\_oxygen','o2\_tspcorr');
+%             title('External Temperature (tempi)')
+            xlabel('Dissolved Oxygen (10^{-6}mol/dm^3)');
+            ylabel('Temperature (^oC)')
+%             figure
+%             plot(target_struct.depthi(subset),target_Struct.tempi(subset));
+%             title('depth vs tepi')
+%             figure
+%             plot(target_struct.depthi(subset),target_Struct.o2_tspcorr(subset));
+%             title('depth vs tepi')
+            ccplot_Glider_Data_t(time,P,target_Struct.o2_tspcorr(subset),'o2 tsp(Corr)',platform_Label);
+%             ccplot_Glider_Data_t(time,P,o2_sat,'o2 sat (Corr)',platform_Label);
+%             ccplot3_Glider_Data(gpsLon, gpsLat,P,o2_sat,[min(o2_sat) max(o2_sat)],'o2 sat (Corr)', platform_Label);
+            ccplot_Glider_Data_t(time,P,target_Struct.oxyw_oxygen(subset),'UnCorr)',platform_Label);
+%             hist_Glider_Data(o2_sat,'o2 sat (Corr)', platform_Label)
+            figure
+            Z = target_Struct.o2_tspcorr;
+            colormap jet
+            ccplot(target_Struct.salini,target_Struct.tempi,Z,[nanmin(Z) nanmax(Z)],'.',10); 
+            title('T-S with O_2 tsp');
+            c = colorbar;
+            c.Label.String = 'O_2 tsp';
+            colormap jet
+            xlabel('S');
+            ylabel('T');
+            
+            figure
+            Z = target_Struct.o2_sat;
+            colormap jet
+            ccplot(target_Struct.salini,target_Struct.tempi,Z,[nanmin(Z) nanmax(Z)],'.',10);
+            c = colorbar;
+            c.Label.String = 'O_2 sat';
+            title('T-S with O_2 sat');
+            colormap jet
+            xlabel('S');
+            ylabel('T');
         catch err
         end
     otherwise
@@ -172,8 +241,12 @@ function ccplot_Glider_Data_t(time,P,Z,var_Label, platform_Label)
 length(~isnan(Z))
 display_String = sprintf('%s %s %s %s\n','Plotting',var_Label,'from',platform_Label);
 disp(display_String);
-figure; ccplot(time,P,Z,[nanmin(Z) nanmax(Z)],'.',10);     
-colorbar; xlabel('Time');  
+figure; 
+colormap jet
+ccplot(time,P,Z,[nanmin(Z) nanmax(Z)],'.',10);     
+colorbar;
+colormap jet
+xlabel('Time');  
 set(gca,'YDir','reverse'); 
 title_String = sprintf('%s %s %s %s',var_Label,'(from', platform_Label, ')') 
 title(title_String);
@@ -184,7 +257,9 @@ datetick('x',6,'keeplimits');
 function ccplot3_Glider_Data(gpsLon, gpsLat,P,Z,bounds,var_Label, platform_Label)
 figure; 
 %me_Try_Map; hold on;
+colormap jet
 hc = ccplot3(gpsLon, gpsLat, -P, Z, bounds, '.', 15);
+colormap jet
 colorbar;
 %hold on; map_SECOORA_2016;
 
