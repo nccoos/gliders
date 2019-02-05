@@ -65,7 +65,7 @@ switch dataset_Code
         end
         % For salinity
         try
-            S = target_Struct.salinCorrected(subset); title('Salinity (Corrected)');
+            S = target_Struct.salinCorrected(subset);
 %             figure; plot(time,S,'bo-'); datetick('x',6,'keeplimits'); title('Salinity (Corrected)');
             ccplot_Glider_Data_t(time,P,S,'Salinity (Corrected)',platform_Label);
             ccplot3_Glider_Data(gpsLon, gpsLat,P,S,[min(S) max(S)],'Salinity (Corrected)', platform_Label);
@@ -197,6 +197,7 @@ switch dataset_Code
 %             plot(target_struct.depthi(subset),target_Struct.o2_tspcorr(subset));
 %             title('depth vs tepi')
             ccplot_Glider_Data_t(time,P,target_Struct.o2_tspcorr(subset),'o2 tsp(Corr)',platform_Label);
+            ccplot_Glider_Data_t(time,P,target_Struct.o2_sat(subset),'o2 sat(Corr)',platform_Label);
 %             ccplot_Glider_Data_t(time,P,o2_sat,'o2 sat (Corr)',platform_Label);
 %             ccplot3_Glider_Data(gpsLon, gpsLat,P,o2_sat,[min(o2_sat) max(o2_sat)],'o2 sat (Corr)', platform_Label);
             ccplot_Glider_Data_t(time,P,target_Struct.oxyw_oxygen(subset),'UnCorr)',platform_Label);
@@ -259,6 +260,8 @@ figure;
 %me_Try_Map; hold on;
 colormap jet
 hc = ccplot3(gpsLon, gpsLat, -P, Z, bounds, '.', 15);
+title_String = sprintf('%s %s %s %s',var_Label,'(from', platform_Label, ')') 
+title(title_String);
 colormap jet
 colorbar;
 %hold on; map_SECOORA_2016;

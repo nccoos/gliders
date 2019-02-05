@@ -20,22 +20,25 @@ dataset_Code = 'ECO';  % CTD or DO or ECO or FLIGHT
 switch dataset_Code
     case 'DO'
 %         target_Struct = load('/Users/luhan/Documents/UNC2017/Data/Ramses/05:17/Ramses_Deployment1_DO_L1');
-        target_Struct = load('/Users/luhan/Documents/UNC2017/Data/Ramses/05:17/Ramses_Deployment1_DO_L1.mat');
+%         target_Struct = load('/Users/luhan/Documents/2017/Data/Ramses/05:17/Ramses_Deployment1_DO_L1.mat');
+        target_Struct = load('/Users/luhan/Documents/2017/Data/Ramses/12:17/Ramses_Deployment3_DO_L1.mat');
         target_Struct.depth = target_Struct.depthi;
         target_Struct.gpsLat = target_Struct.gpsLati;
         target_Struct.gpsLon = target_Struct.gpsLoni;
         x = [];
     case 'ECO'
-        target_Struct = load('/Users/luhan/Documents/UNC2017/Data/Ramses/05:17/Ramses_Deployment1_ECO_L1.mat');
+%         target_Struct = load('/Users/luhan/Documents/2017/Data/Ramses/05:17/Ramses_Deployment1_ECO_L1.mat');
+        target_Struct = load('/Users/luhan/Documents/2017/Data_glider_l1/Ramses/05_18/Ramses_Deployment4_ECO_L1.mat');
         x = [];
     case 'CTD'
-        target_Struct = load('/Users/luhan/Documents/UNC2017/Data/Ramses/05:17/Ramses_Deployment1_CTD_L1.mat');
+%         target_Struct = load('/Users/luhan/Documents/2017/Data/Ramses/05:17/Ramses_Deployment1_CTD_L1.mat');
+        target_Struct = load('/Users/luhan/Documents/2017/Data_glider_l1/Ramses/05_18/Ramses_Deployment4_CTD_L1.mat');
         % x is in workspace if you just built CTD mat file
         if exist('x') ~= 1
             x = [];
         end
     case 'FLIGHT'
-        target_Struct = load('/Users/luhan/Documents/UNC2017/Data/Ramses/09:17/Ramses_Deployment1_Flight_L1.mat');
+        target_Struct = load('/Users/luhan/Documents/2017/Data_glider_l1/Ramses/12_17/Ramses_Deployment3_Flight_L1.mat');
         x = [];
     otherwise
 end
@@ -50,10 +53,12 @@ end
 % t_Max_String = '26-May-2017 19::09:00';
 % t_Min_String = '21-May-2017 9::07:00';
 % t_Max_String = '21-May-2017 9::15:00';
-t_Min_String = '1-May-2017 19::06:00';
-t_Max_String = '31-May-2017 19::14:00';
-% t_Min_String = '1-Sep-2017 12::35:40';
-% t_Max_String = '31-Sep-2017 12::46:10';     
+% t_Min_String = '1-May-2017 19::06:00';
+% t_Max_String = '31-May-2017 19::14:00';
+% t_Min_String = '20-Dec-2017 12::35:40';
+% t_Max_String = '11-Jan-2018 12::46:10';     
+t_Min_String = '15-May-2018 12::35:40';
+t_Max_String = '08-Jun-2018 12::46:10'; 
 % t_Min_String = '13-Sep-2016 18:00:00';
 % t_Max_String = '13-Sep-2016 19:00:00';
 %{

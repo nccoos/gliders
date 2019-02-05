@@ -28,7 +28,7 @@ timeBase_is_sensor_time = true;
 for gliderIndex=2:2
 
     % SET THE DEPLOYMENT NUMBER (1, 2 or 3) ...
-    for deploymentNumber=1:1
+    for deploymentNumber=4:4
         
         %clearvars -except gliderIndex deploymentNumber;
 
@@ -43,17 +43,17 @@ for gliderIndex=2:2
 
         % populate arrays for the deployment start and end dates...
         % ex. strStart(2, 3) is start date for Ramses, Deployment 3
-        strStart = {'01-May-2017'};
-        strEnd   = {'30-May-2017'};
-
+        strStart = {nan,nan,nan,nan;'1-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018'};
+        strEnd   = {nan,nan,nan,nan;'30-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018'};
+        
         % deployment number string...
         strDeploymentNumber = num2str(deploymentNumber);
 
         % deployment start date string...
-        strStartDate = strStart;%(gliderIndex, deploymentNumber);
+        strStartDate = strStart(gliderIndex, deploymentNumber);%(gliderIndex, deploymentNumber);
 
         % deployment end date string...
-        strEndDate = strEnd;%(gliderIndex, deploymentNumber);
+        strEndDate = strEnd(gliderIndex, deploymentNumber);%(gliderIndex, deploymentNumber);
 
         % define the path to the glider ascii files...
         %datadir = strcat('/Users/haloboy/Documents/MASC/MATLAB/CTD_data_correction/GLIDER_CTD_DATA_LEVEL0/',...
@@ -61,8 +61,8 @@ for gliderIndex=2:2
         % My full set [SBL]
 %         ebddir = 'C:\Users\slockhar\Projects\Glider\GliderFiles\SECOORA_2016\Ramses\history\All\EndOfMissionSecoora2016\ebdasc\';
 %         dbddir = 'C:\Users\slockhar\Projects\Glider\GliderFiles\SECOORA_2016\Ramses\history\All\EndOfMissionSecoora2016\dbdasc\';
-         ebddir = strcat('/Users/luhan/Documents/UNC2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/ebdasc/');
-         dbddir = strcat('/Users/luhan/Documents/UNC2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/dbdasc/');
+         ebddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/ebdasc/');
+         dbddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/');
         
         % define default bounds for use in plots...
         switch gliderIndex
@@ -86,6 +86,8 @@ for gliderIndex=2:2
                         chlorBounds = [0.0 4.0];
 
                     case 3  % Deployment 3
+                        chlorBounds = [0.0 4.0];
+                    case 4  % Deployment 4
                         chlorBounds = [0.0 4.0];
                 end
         end

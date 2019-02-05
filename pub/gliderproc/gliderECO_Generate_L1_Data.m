@@ -313,6 +313,7 @@ gap = diff(ptime_datenum);      %Locate the beginning of dives
 gap_loc = find(gap>0.005)+1;
 chlor_Clean = chlor;
 for i = 1:length(gap_loc)
+    if gap_loc(i)+200 <= length(pres)
     [peaks,loc] = findpeaks(pres(gap_loc(i):gap_loc(i)+200));
     % If the value of the first two casts of each dive is larger than the 
     % mean + standard deviation of the next 5 casts, then replace it with nan.
@@ -322,7 +323,8 @@ for i = 1:length(gap_loc)
                   +std(chlor(gap_loc(i)+2*loc(1)+1:gap_loc(i)+7*loc(1)))
               chlor_Clean(j) = nan;
            end
-        end
+       end
+    end
 end            
 %% INTERPOLATE FLIGHT DATE (e.g. GPS) TO SCIENCE (OR CTD) TIME
 % make copies of dbd time stamp vector for use in lat/lon interpolation...

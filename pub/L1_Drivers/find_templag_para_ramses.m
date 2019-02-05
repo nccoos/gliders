@@ -32,8 +32,8 @@ for gliderIndex=3:3
     % SET THE DEPLOYMENT NUMBER (1, 2 or 3) ...
     for deploymentNumber=1:1
       
-         ebddir = strcat('/Users/luhan/Documents/UNC2017/Data/test/');
-         dbddir = strcat('/Users/luhan/Documents/UNC2017/Data/test/');
+         ebddir = strcat('/Users/luhan/Documents/2017/Data_glider_l1/test/');
+         dbddir = strcat('/Users/luhan/Documents/2017/Data_glider_l1/test/');
         
         %% READ IN EBD DATA 
 % declare variables for storing data...
@@ -289,8 +289,6 @@ pres2 = pres(subset2);
 flow1 = gliderVelocity(subset1);
 flow2 = gliderVelocity(subset2); 
 figure;
-t1 = ptime_datenum(subset1);
-t2 = ptime_datenum(subset2);
 subplot(4,1,1);
 plot(t1,flow1,t2,flow2)
 datetick

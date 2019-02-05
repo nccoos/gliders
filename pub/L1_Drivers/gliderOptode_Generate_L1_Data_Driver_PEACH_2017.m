@@ -25,8 +25,8 @@ timeBase_is_sensor_time = true;
 
 % populate arrays for the deployment start and end dates...
 % ex. strStart(2, 3) is start date for Ramses, Deployment 3
-strStart = {nan,nan;'1-May-2017','1-Sep-2017'};
-strEnd   = {nan,nan;'30-May-2017','31-Sep-2017'};
+strStart = {nan,nan,nan;'1-May-2017','5-Sep-2017','22-Dec-2017'};
+strEnd   = {nan,nan,nan;'30-May-2017','24-Sep-2017','10-Jan-2018'};
         
 % Setting debug_Level to:
 %   0: No plots
@@ -38,7 +38,7 @@ debug_Level = 2;
 for gliderIndex=2:2
     
     % SET THE DEPLOYMENT NUMBER (1, 2 or 3) ...
-    for deploymentNumber=1:1
+    for deploymentNumber=3:3
 
         % glider name string...
         if (gliderIndex==1)
@@ -58,12 +58,12 @@ for gliderIndex=2:2
 
         % define the path to the glider ascii files...
 %         ebddir = strcat('/Users/luhan/Documents/UNC2017/Data/peach_2017_ramses/ebdasc/');
-        ebddir = strcat('/Users/luhan/Documents/UNC2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/ebdasc/');
+        ebddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_12/store/ascii/ebdasc/');
         
         % define the path to the L1 CTD data (as the called program will
         % need to integrate optode data with processed CTD data)
-        L1_CTD_Dir = '/Users/luhan/Documents/UNC2017/Data/Ramses/05:17/';
-                     
+%         L1_CTD_Dir = '/Users/luhan/Documents/UNC2017/Data/Ramses/05:17/';
+          L1_CTD_Dir = '/Users/luhan/Documents/2017/Data/Ramses/12:17/';           
         % define optode foil calibration coefficients
         % and oxygen bounds values by glider and deployment
         switch gliderIndex

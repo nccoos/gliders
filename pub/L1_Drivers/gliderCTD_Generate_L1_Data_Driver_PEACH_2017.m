@@ -3,6 +3,7 @@
 % stored in the pwd.
 % Update for peach 2017 glider ramses
 % by Lu Han, 08/2017
+% Level1: only thermal lag corrected with default parameter 
 
 clear all;
 close all;
@@ -30,7 +31,7 @@ timeBase_is_sensor_time = false;
 for gliderIndex=2:2
 
     % SET THE DEPLOYMENT NUMBER (1, 2 or 3) ...
-    for deploymentNumber=2:2
+    for deploymentNumber=4:4
         
         %clearvars -except gliderIndex deploymentNumber;
 
@@ -48,8 +49,10 @@ for gliderIndex=2:2
             else
                 % Not pumped
                 % SET CORRECTION PARAMETERS STRUCTURE ...
-                 correctionParams = [0.1587 0.0214 6.5316 1.5969];
+                correctionParams = [0.1328 0.0208 9.7492 4.6128]; %median from Garau et.al.2011
+%                 correctionParams = [0.1587 0.0214 6.5316 1.5969];
 %                 correctionParams = [0.2368    0.0023    7.9866    1.9207];
+%                 correctionParams = [0.13    0.0195    1    1];
 %                 correctionParams = [0.0752    0.0248   14.7322    3.5474];
                 correction_parameters = struct('alpha_offset', correctionParams(1),...
                                    'alpha_slope', correctionParams(2),...
@@ -64,8 +67,8 @@ for gliderIndex=2:2
 
         % populate arrays for the deployment start and end dates...
         % ex. strStart(2, 3) is start date for Ramses, Deployment 3
-        strStart = {nan,nan;'1-May-2017','5-Sep-2017'};
-        strEnd   = {nan,nan;'30-May-2017','24-Sep-2017'};
+        strStart = {nan,nan,nan,nan;'1-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018'};
+        strEnd   = {nan,nan,nan,nan;'30-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018'};
 
         % deployment number string...
         strDeploymentNumber = num2str(deploymentNumber);
@@ -84,8 +87,8 @@ for gliderIndex=2:2
 %                          filesep, 'ebdasc', filesep);
 %         dbddir = strcat('C:\Users\NewFolderSamsung\Desktop\scp\', strGliderName, filesep,'0', strDeploymentNumber,...
 %                          filesep, 'dbdasc', filesep);
-          ebddir = strcat('/Users/luhan/Documents/UNC2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/ebdasc/');
-          dbddir = strcat('/Users/luhan/Documents/UNC2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/dbdasc/');
+          ebddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/ebdasc/');
+          dbddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/');
 %           ebddir = strcat('/pine/scr/l/u/luh/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/ebdasc/');
 %           dbddir = strcat('/pine/scr/l/u/luh/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/dbdasc/');
 
@@ -130,6 +133,11 @@ for gliderIndex=2:2
                         salinBounds = [35.3 36.7];
                         densBounds =  [1024.4 1027.4];
                         chlorBounds = [0.0 4.0];
+                    case 4  % Deployment 3
+                        tempBounds =  [10.0 24.5];
+                        salinBounds = [35.3 36.7];
+                        densBounds =  [1024.4 1027.4];
+                        chlorBounds = [0.0 4.0];    
                 end
         end
         
@@ -150,7 +158,8 @@ for gliderIndex=2:2
         deploymentInfo.ebddir = ebddir;
         deploymentInfo.dbddir = dbddir;
         % Call gliderFlight_Generate_L1_Data and gliderCTD_Generate_L1_Data
-        flight = gliderFlight_Generate_L1_Data(deploymentInfo);
+%         flight = gliderFlight_Generate_L1_Data(deploymentInfo);
+        disp('start!')
         [flight, science, x] = gliderCTD_Generate_L1_Data(deploymentInfo,myBounds,correction_parameters,ctd_Pumped,timeBase_is_sensor_time);
 %         movefile Ramses_Deployment2_CTD_L1_no.mat /Users/luhan/Documents/UNC2017/Data/Ramses/09:17/
     end
