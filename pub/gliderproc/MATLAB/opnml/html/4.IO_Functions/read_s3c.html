@@ -1,0 +1,59 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_s3c</H1>
+<H2>(./IO_Functions/read_s3c.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data,freq,nnv]=read_s3c(fname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_S3C read a FEM output file of <A HREF = "../4.IO_Functions/s3c.html">s3c</A> filetype.
+
+ [data,freq,nnv]=read_s3c(fname)
+
+             READ_S3C is part of a suite of OPNML I/O functions  
+             to read specific filetypes pertaining to FEM model  
+             input and output.   These functions allow the user to
+             get these data files into MATLAB without copying the
+             files and removing the header info by hand.
+
+             READ_S3C reads the FEM filetype <A HREF = "../4.IO_Functions/s3c.html">s3c</A>, as 
+             detailed in &quot;Data File Standards for the Gulf of Maine
+             Project&quot; from the Numerical Methods Laboratory at 
+             Dartmouth College.  (This document is located in the OPNML
+             notebook under External Documents.)  There are four
+             columns, the first of which is the node number.  The
+             remaining columns are floating point.  
+
+   Input :   If fname is omitted, READ_S3C enables a file browser
+             with which the user can specify the .<A HREF = "../4.IO_Functions/s3c.html">s3c</A> file.
+
+             Otherwise, fname is the name of the <A HREF = "../4.IO_Functions/s3c.html">s3c</A> file, relative 
+             or absolute (fullpath), including the suffix '<A HREF = "../4.IO_Functions/s3c.html">s3c</A>'.
+             This input is a string so it must be enclosed in single 
+             quotes. The header lines are discarded.
+  Output :   The data part is returned in the variable data. 
+
+             Call READ_S3C as:
+             &gt;&gt; [data,freq,nnv]=read_s3c(fname);
+             <A HREF = "../4.IO_Functions/s3c.html">s3c</A> filetypes contain both the frequency and the number 
+             of vertical nodes as header info, which will be returned 
+             to the user.
+
+             If READ_S3C cannot locate the file, it exits, returning 
+             a -1 instead of the data matrix.
+             
+   NOTES :   The .<A HREF = "../4.IO_Functions/s3c.html">s3c</A> filetype contains 3-D data; i.e., complex-valued
+             scalar data at each vertical node per horizontal node.
+
+ Call as: [data,freq,nnv]=read_s3c(fname);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

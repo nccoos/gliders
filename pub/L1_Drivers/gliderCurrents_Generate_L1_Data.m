@@ -15,6 +15,7 @@
 %//////////////////////////////////////////////////////////////////////////
 
 clear all;
+close all;
 
 % add paths for required files...
 addpath('../gliderproc/MATLAB/util/');
@@ -22,16 +23,22 @@ addpath('../gliderproc/MATLAB/strfun/');
 % populate arrays for the deployment start and end dates...
 % ex. strStart(2, 3) is start date for Ramses, Deployment 3
 
-strStart = {nan,nan,nan,nan;'1-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018'};
-strEnd   = {nan,nan,nan,nan;'30-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018'};
+strStart = {nan,nan,nan,nan,nan,nan;'16-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018','5-Jul-2018','7-Sep-2018'};
+strEnd   = {nan,nan,nan,nan,nan,nan;'29-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018','18-Jul-2018','29-Sep-2018'};
+dbdDIR = strcat(['/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_12/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_07/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_09/store/ascii/dbdasc/']);
 
 % SET THE GLIDER INDEX (Pelagia = 1, Ramses = 2) ...
 for gliderIndex=2:2
     
     % SET THE DEPLOYMENT NUMBER (1, 2 or 3) ...
-    for deploymentNumber=4:4
+    for deploymentNumber=1:6
         
-        clearvars -except gliderIndex deploymentNumber strStart strEnd;
+%         clearvars -except gliderIndex deploymentNumber strStart strEnd;
 
         % glider name string...
         if (gliderIndex==1)
@@ -50,8 +57,7 @@ for gliderIndex=2:2
         strEndDate = strEnd(gliderIndex, deploymentNumber);
 
         % define the path to the glider ascii files...
-        datadir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/');
-
+        datadir = dbdDIR(deploymentNumber,:);
         disp(['Processing Currents data for ', strGliderName, ' Deployment ', strDeploymentNumber]);
         
         %*** READ IN DBD DATA ****

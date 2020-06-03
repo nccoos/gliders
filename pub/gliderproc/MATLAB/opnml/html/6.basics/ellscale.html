@@ -1,0 +1,48 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./basics]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>ellscale</H1>
+<H2>(./basics/ellscale.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>ellscale(htel,unitn,scale_xor,scale_yor)</pre>
+<HR><H3>Help text</H3>
+<pre>
+
+ ELLSCALE  draw a speed scale on an <A HREF = "../6.basics/ellipse.html">ellipse</A> plot 
+
+ ELLSCALE  draw a speed scale on an <A HREF = "../6.basics/ellipse.html">ellipse</A> picture.  Typically
+           called after TELLIPSE, passing the object handle returned 
+           by TELLIPSE.  If TELLIPSE was used in &quot;particle-excursion&quot;
+           mode, then ELLSCALE cannot draw a vector scale, as there is 
+           to draw.
+
+           htel MUST be the handle returned by TELLIPSE.
+           TELLIPSE returns this number to the main
+           workspace.
+
+           unitn (optional) is the flag that indicates which
+           units-text ELLSCALE should put on the figure to 
+           correspond to the vector magnitudes:
+ 
+              If omitted, ELLSCALE uses the string 'units'.
+              If unitn=1, ELLSCALE uses the string 'm/sec'.
+              If unitn=2, ELLSCALE uses the string 'cm/sec'.
+              If unitn='text', ELLSCALE uses the string 'text'.
+   
+           This last option provides for the user to specify
+           the string of choice for units.
+  
+           If unitn is anything other than one of the possibilities
+           specified above, ELLSCALE aborts.
+
+ Call as: &gt;&gt;  ellscale(h,unitn)
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

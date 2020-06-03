@@ -1,0 +1,34 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./mat4]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>el_areas4</H1>
+<H2>(./mat4/el_areas4.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>ineg=el_areas4(e,x,y)</pre>
+<HR><H3>Help text</H3>
+<pre>
+EL_AREAS4 - compute triangular finite element areas
+   EL_AREAS4(e,x,y) computes the areas for the elements 
+   defined by the element list (e) and the node coordinates
+   (x,y).  The areas are NOT returned to the workspace, but
+   instead are stored globally in AR.  An index of element
+   numbers whose areas are negative (if any) are returned.
+   Negative element areas indicate clockwise elemental
+   node numbering, instead of the conventional counter-
+   clockwise numbering.
+
+ Call as:   &gt;&gt; ineg=el_areas4(e,x,y);
+
+ Written by : Brian O. Blanton (October 95)
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function is called by
+<pre><UL>
+<LI><A HREF = "../7.mat4/genbel4.html">genbel4</A>        ./mat4/genbel4.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

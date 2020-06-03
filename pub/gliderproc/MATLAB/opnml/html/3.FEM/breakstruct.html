@@ -1,0 +1,38 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>breakstruct</H1>
+<H2>(./FEM/breakstruct.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[e,x,y,z,b]=breakstruct(fem_grid_struct)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ BREAKSTRUCT - split <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> into separate components
+ 
+               BREAKSTRUCT returns the basic FEM domain arrays
+               to the calling workspace by breaking down the 
+               input <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>.
+              
+               All arguments are required.
+ 
+  INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> - (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>) 
+
+ OUTPUT : e  - node connectivity list (triangular) 
+          x  - x-horizontal node coordinates      
+          y  - y-horizontal node coordinates      
+          z  - bathymetry list                    
+          b  - boundary segment list            
+
+   CALL : &gt;&gt; [e,x,y,z,b]=breakstruct(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>);
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

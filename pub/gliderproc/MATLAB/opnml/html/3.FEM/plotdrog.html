@@ -1,0 +1,72 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>plotdrog</H1>
+<H2>(./FEM/plotdrog.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>h=plotdrog(x,y,ndrog,tstride,dstride)</pre>
+<HR><H3>Help text</H3>
+<pre>
+PLOTDROG plot drogue .pth file output from DROG3D or DROG3DDT.
+   PLOTDROG plots the paths of drogue locations as specified 
+   in the x,y coordinate arrays.  PLOTDROG takes as required
+   arguments the x,y coordinates of the drogue locations AND 
+   the number of drogues in the path file.  The path information
+   from  DROG3D or DROG3DDT can be read into MATLAB with 
+   READ_PTH, which reads .pth files.
+
+   PLOTDROG draws each drogue with a separate line, solid
+   by default.  Each drogue line is referenced with
+   one object handle.  Therefore, to change the linetype or
+   color of the lines, use the MATLAB command SET and the handle
+   returned by PLOTDROG. 
+
+   Even though READ_PTH returns the entire path matrix, only
+   two columns of it are passed to PLOTDROG.  It is up to the 
+   user to make sure the correct ones are passed in.  I.e.,
+   there is no way for PLOTDROG to ensure x,y represent
+   HORIZONTAL coordinates, etc.
+
+   INPUT:
+         x,y	  - x,y coordinates of drogues
+         ndrog   - number of drogues in path matrix;
+         	    this number is returned by READ_PTH 
+         tstride - time stride (optional, def = 1) is 
+         	    the number of timesteps to skip over.  1 would
+         	    mean &quot;plot all timesteps&quot;; 2 would mean &quot;plot
+         	    every other timestep&quot;; i.e., skip every other
+         	    timestep; etc...
+         dstride - drogue stride (optional, def = 1) is
+         	    the number of drogues to skip; see tstride above.
+         	    In order to specify dstride, you must also specify
+         	    tstride.
+
+         Both tstride and dstride can be vectors of specific timesteps
+         or drogue numbers to plot.  In order to plot only ONE drogue
+         or ONE timestep, pass into PLOTDROG the values of tstride
+         and/or dstride enclosed in {}'s.  For example, to
+         plot the initial drogue locations, call PLOTDROG as:
+         &gt;&gt; h=plotdrog(x,y,ndrog,{1});
+         To plot the 3rd drogue for all timesteps, call PLOTDROG as:
+         &gt;&gt; h=plotdrog(x,y,ndrog,1,{3});
+ 
+ OUTPUT:
+          h       - the handle(s) to the path lines on the current axes
+
+          dstride - the number of drogues to skip, see tstride above.
+                    In order to specify dstride, you must also specify
+                    tstride.
+
+   CALL:  h=plotdrog(x,y,ndrog);
+          h=plotdrog(x,y,ndrog,tstride);
+          h=plotdrog(x,y,ndrog,tstride,dstride);
+          
+ Written by: Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

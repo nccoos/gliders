@@ -1,0 +1,50 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./mat4]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>drawelems4</H1>
+<H2>(./mat4/drawelems4.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>hel=drawelems4(elems,x,y,z) </pre>
+<HR><H3>Help text</H3>
+<pre>
+DRAWELEMS4 draw FEM element configuration 
+   DRAWELEMS4 a routine to draw element boundries given an element,
+   node, and (optionally) bathymetry lists.  If no z-
+   coordinates are given, the mesh is drawn in 2-D.
+   Otherwise, the mesh is drawn in 3-D, with the view
+   perspective set to azimuth=-27 deg and 
+   elevation=30 deg.  See the MATLAB VIEW command for 
+   more on view points.
+
+     Input :
+             elems - a 3- or 4-column matrix giving the nodes comprising 
+                     each element.  If there are 3 columns, each line 
+                     should be &quot;n1 n2 n3&quot;, a triangular element
+                     description.  If there are 4 columns, each line
+                     should be &quot;n1 n2 n3 n4&quot;, a quadrilateral
+                     element description.
+             x     - an x-coord list of nodes;
+             y     - a  y-coord list of nodes; 
+             z     - a  z-coord list of nodes (optional);
+            
+             x,y,z must be 1-D vectors.
+           
+   Output :  DRAWELEMS returns the handle of the element object.
+
+             NOTES: 1) Element line-segments are drawn in solid white.
+                       This will be an optional argument in the future.
+                    2) Existing plots are added to.
+                    3) Axis limits are NOT set.  'axis('equal')' may
+                       need to be issued by the user, if it has not already.
+
+   Call as: &gt;&gt;  hel=drawelems4(elems,x,y,z);
+
+ Written by: Brian O. Blanton
+                  
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

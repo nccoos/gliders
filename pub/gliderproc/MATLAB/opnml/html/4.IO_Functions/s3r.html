@@ -1,0 +1,41 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>s3r</H1>
+<H2>(./IO_Functions/s3r.m)</H2>
+<HR><H3>Help text</H3>
+<pre>
+S3R Dartmouth FEM File Standard Filetype (Description).
+
+       Output format for a 3-D, real-valued (steady-state) scalar field.
+
+       This filetype is read by the OPNML MATLAB function 
+       <A HREF = "../4.IO_Functions/read_v2r.html">READ_V2R</A>.  Type &quot;help <A HREF = "../4.IO_Functions/read_v2r.html">read_v2r</A>&quot; for more information.
+
+       The .s3r file contains 3 header lines:
+          1) The geometric meshname
+          2) User-defined file description line
+          3) NNV - number of vertical nodes
+
+       Then, there are NN lines of the form:
+             I  Z(I,J) S(I,J)  
+
+       where:  Z(I,J)  - vertical co-ordinate at node (I,J)
+               S(I,J)  - scalar value at node I,J
+               J=1,NNV - the inner loop over 1-D vertical nodes
+               I=1,NN  - the outer loop over 2-D horizontal nodes
+               NN      - the number of horizontal nodes in the mesh
+ 
+      See the document &quot;DATA FILE STANDARDS FOR THE GULF OF MAINE PROJECT&quot;
+      for more details. 
+</pre>
+<HR><H3>Cross-Reference Information</H3>This  is called by
+<pre><UL>
+<LI><A HREF = "../4.IO_Functions/read_fem_data.html">read_fem_data</A>  ./IO_Functions/read_fem_data.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

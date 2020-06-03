@@ -1,0 +1,46 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FDCONT]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>fdcontour</H1>
+<H2>(./FDCONT/fdcontour.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>cmap=gen_cmap(ncolorbase,nband,cmaptype)</pre>
+<HR><H3>Help text</H3>
+<pre>
+FDCONTOUR contour FE scalar on FD grid
+   FDCONTOUR accepts a scalar field from a FEM domain and
+   an FD grid in bfd form, and contours the FE scalar on the
+   FD grid, using MATLAB's contourf routine for filled color
+   bands.
+
+   Input: bfd  - big finite difference array (see <A HREF = "../2.FDCONT/genbfd.html">GENBFD</A>)
+          qfe  - the scalar on FE nodes
+          qmin - lower limit of scalar to contour
+          qmax - upper limit of scalar to contour
+          dq   - contour bandwidth (not the number of contours!!)
+          cb   - colorbar flag (0=no colorbar,1=colorbar)
+
+   Output: [c,h,hcb] - same vaules that contourf returns
+                       plus the axes handle to the colorbar
+                       if drawn (cb=1)
+
+   Call as: 
+        &gt;&gt; fdcontour(bfd,qfe)
+        &gt;&gt; fdcontour(bfd,qfe,qmin,qmax)
+        &gt;&gt; fdcontour(bfd,qfe,qmin,qmax,dq)
+        &gt;&gt; fdcontour(bfd,qfe,qmin,qmax,dq,cb)
+        &gt;&gt; [c,h,hcb]=fdcontour(bfd,qfe,qmin,qmax,dq,cb)
+        
+   Written by: Brian Blanton (Spring 99); based
+               on Chris E. Naimie's colorband routines.
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../2.FDCONT/fe2fd.html">fe2fd</A>          ./FDCONT/fe2fd.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

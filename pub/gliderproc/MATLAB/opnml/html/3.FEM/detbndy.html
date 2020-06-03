@@ -1,0 +1,42 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>detbndy</H1>
+<H2>(./FEM/detbndy.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>bnd=detbndy(in)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ DETBNDY compute a boundary segment list for a FEM domain
+
+ DETBNDY bnd=detbndy(e);
+         This function computes a boundary for the FEM domain
+         described a file containing element connectivity list (e).
+         It uses sparse matrix techniques to determine the element
+         edges on the boundary of the FEM domain.
+
+ Input:  ele -  element list; 3 (.tri) or 4 (.ele) columns wide
+ Output: bnd -  a 2-column list of boundary-node numbers, returned
+                to the local workspace
+
+         The output boundary list are pairs of node numbers, not 
+         coordinates, describing the edges of elements on the 
+         exterior of the domain, including islands.  The segments 
+         are not connected.
+
+         Call as: bnd=detbndy(e);
+
+ Written by : Brian O. Blanton at The University of North Carolina 
+              at Chapel Hill, Mar 1995.
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function is called by
+<pre><UL>
+<LI><A HREF = "../3.FEM/loadgrid.html">loadgrid</A>       ./FEM/loadgrid.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

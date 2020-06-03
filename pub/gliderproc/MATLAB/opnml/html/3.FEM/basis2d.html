@@ -1,0 +1,61 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>basis2d</H1>
+<H2>(./FEM/basis2d.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[phi,jj]=basis2d(fem_grid_struct,xylist,j)</pre>
+<HR><H3>Help text</H3>
+<pre>
+BASIS2D compute basis functions for input points in FEM grid
+   BASIS2D computes the FEM basis functions for a given 
+   horizontal position, specified either in the argument
+   list or with the mouse.
+
+   In determining which element has been selected, 
+   BASIS2D needs elemental areas and shape functions.
+   Element areas are returned by <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>.
+   The routine <A HREF = "../3.FEM/belint.html">BELINT</A> computes shape function information
+   and attaches it to the input <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>.
+   These two functions MUST be run before BASIS2D will 
+   run.
+
+   <A HREF = "../3.FEM/belint.html">BELINT</A> is run as: 
+      new_struct=<A HREF = "../3.FEM/belint.html">belint</A>(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>); 
+   If ever needed, <A HREF = "../3.FEM/el_areas.html">EL_AREAS</A> is run as:
+      [new_struct,ineg]=<A HREF = "../3.FEM/el_areas.html">el_areas</A>(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>); 
+
+   INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> - (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)     
+           xylist  (op)    - points to find elements for [n x 2 double] 
+           j       (op)    - element list corresponding to the xylist
+                             set of points.  Optional, but isf passed in, 
+                             points will not be relocated. length(j) must
+                             equal length(xylist).
+           
+   OUTPUT : basis function(s) and element number(s)
+            If elements were NOT passed in, then providing two output
+            arguments will collect the elements determined to contain the 
+            specified points.
+ 
+   CALL : &gt;&gt; [phi,j]=basis2d(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>)   for interactive
+    or
+          &gt;&gt; [phi,j]=basis2d(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,xylist)        
+    or
+          &gt;&gt; phi=basis2d(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,xylist,j)        
+
+ Written by : Brian O. Blanton 
+ Summer 1998
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/findelem.html">findelem</A>       ./FEM/findelem.m</LI>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+<LI><A HREF = "../3.FEM/is_valid_struct2.html">is_valid_struct2</A>./FEM/is_valid_struct2.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

@@ -1,0 +1,52 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>interp_scalar</H1>
+<H2>(./FEM/interp_scalar.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[outq,jj]=interp_scalar(fem_grid_struct,q,x,y,j)</pre>
+<HR><H3>Help text</H3>
+<pre>
+INTERP_SCALAR - interpolate scalar values onto scatter points
+   INTERP_SCALAR Interpolates a scalar defined at all 2-D grid points
+   in the <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> onto the scattered points (x,y).
+
+     INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)
+   	      q - scalar field to interpolate
+   	      x,y - points to interpolate to (optional)
+   	      j - elements that contain x,y points (optional)
+
+     If x,y are not passed in, INTERP_SCALAR prompts the user
+     to specify a location with the mouse.  In this case,
+     the location, element number, and interpolated vaule
+     are returned through the first output argument, or else
+     to the screen, as [x y j outq].
+
+     If j is not passed in, INTERP_SCALAR locates the points
+     within <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> and returns the element list
+     if two output arguments are provided.
+
+    OUTPUT : outq - interpolated values
+   	      j    - elements (optional)
+   	      x,y  - mouse-specified point (optional)
+
+      CALL : outq=interp_scalar(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,q); (mouse-driven)
+   	      [outq,j]=interp_scalar(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,q,x,y);
+   	      outq=interp_scalar(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,q,x,y,j);
+
+   Written by : Brian O. Blanton
+   Summer 1998
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/belint.html">belint</A>         ./FEM/belint.m</LI>
+<LI><A HREF = "../3.FEM/el_areas.html">el_areas</A>       ./FEM/el_areas.m</LI>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+<LI><A HREF = "../3.FEM/is_valid_struct2.html">is_valid_struct2</A>./FEM/is_valid_struct2.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

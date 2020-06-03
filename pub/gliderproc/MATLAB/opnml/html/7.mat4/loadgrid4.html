@@ -1,0 +1,53 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./mat4]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>loadgrid4</H1>
+<H2>(./mat4/loadgrid4.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[ele,x,y,z,bnd]=loadgrid4(gridname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+LOADGRID4   load principle gridfiles for a given domain name (input)
+ 
+  Input:    gridname - name of domain to load grid files
+
+ Output:    LOADGRID4 returns the following in this order (ALL OUTPUT
+            ARGUMENTS ARE REQUIRED!!):
+                1)  3-column element list (columns 2-4 of .ele file )
+                2)  x-coordinate node list ( col 2 of .nod file )
+                3)  y-coordinate node list ( col 3 of .nod file )
+                4)  bathymetry list (col 2 of .bat) file 
+                5)  boundary node/pair list (.bnd file )
+
+            LOADGRID4 with no input gridname checks to see if the global
+            variable DOMAIN has been set.  If so, LOADGRID4 uses this 
+            name to load files for.  If DOMAIN does NOT exist or is  
+            empty, the input gridname must be specified.  
+
+            If the boundary list (.bnd) exists locally, LOADGRID4
+            attempts to load the remaining files locally.  If the .bnd
+            file does NOT exist locally, LOADGRID4 searches the 
+            GRIDS and GRIDDIRS global variables for the grid data.
+
+            If any of the principle grids files does not exist, LOADGRID4
+            displays the appropriate message and exits, returning empty
+            arrays for missing variables.
+            
+            In a call to LOADGRID4, space must be provided for the 
+            output data to be returned.  Therefore, call LOADGRID4 
+            as follows:
+            &gt;&gt; [ele,x,y,z,bnd]=loadgrid4(gridname);
+            There are 5 variables in the output list, one for each 
+            returned array.  
+
+ Call as: [ele,x,y,z,bnd]=loadgrid4(gridname);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

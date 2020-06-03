@@ -1,0 +1,48 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>horzslicefem</H1>
+<H2>(./FEM/horzslicefem.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>qlev=horzslicefem(zgrid,q,zlev)</pre>
+<HR><H3>Help text</H3>
+<pre>
+HORZSLICEFEM slice a FEM domain horizontally
+   HORZSLICEFEM slices a 3-D FEM domain specified in zgrid
+   horizontally at vertical position zlev, mapping the 
+   data in q to that level.
+
+ Inputs (all three arguments REQUIRED):
+   zgrid - vertical position of FEM domain, in [nn x nnv] shape 
+       q - [nn x nnv] scalar field, in [nn x nnv] shape 
+           or a 3-d array of several variables to slice,
+           [nn x nnv x nqs], where nqs is the number of scalars
+           to slice
+    zlev - the vertical level at which to make slice
+
+ Output:
+    qlev - quantity q mapped to zlev 
+
+ ALTERNATIVE: (not yet available)
+  Input (Both arguments REQUIRED):
+   <A HREF = "../3.FEM/fem_icq4_struct.html">fem_icq4_struct</A> - structure containing .icq4 variables
+   zlev - the vertical level at which to make slice
+
+ Output: 
+    qlev - all 3-D .icq4 field variables mapped to zlev.
+           in the following order:
+            UZMID,VZMID,WZMID,Q2MID,Q2LMID,TMPMID,SALMID
+
+ Call as: &gt;&gt; qlev=horzslicefem(zgrid,q,zlev)
+    OR:   &gt;&gt; qlev=horzslicefem(<A HREF = "../3.FEM/fem_icq4_struct.html">fem_icq4_struct</A>,zlev)
+    
+
+ Written by: Brian O. Blanton
+             December 1998   
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

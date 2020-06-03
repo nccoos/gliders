@@ -1,0 +1,63 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_ucd</H1>
+<H2>(./IO_Functions/read_ucd.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>ret_struct=read_ucd(inpname);</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_UCD read an .inp file, an AVS-Unstructured Cell Data file with
+         uniform cell topology of type TRI.
+
+         For an unknown reason, AVS uses the suffix '.inp' to indicate
+         a input file for a UCD structure and not the obvious '.ucd', 
+         even though the AVS routines which use UCD structures are called 
+         UCD routines.  OPNML will adhere to this convention as well.
+         This unfortunately conflicts with the filename suffix for
+         the FUNDY series of FEM models.
+
+         This routine is provided as an &quot;interface&quot; between the
+         AVS-UCD datatype and OPNML/MATLAB in the loosest sense.
+         Currently, only the TRANSECT code and the transect routines 
+         in QUODDY3.3 and later output a UCD-structure file.
+         The .trn (transect) filetype is obsolete.
+
+ Input:   If inpname is omitted, READ_UCD enables a file browser
+          with which the user can specify the .inp file.
+
+          Otherwise, READ_UCD takes as input the filename of the 
+          transect data file, including the .inp suffix.
+
+ Output:  The output of READ_UCD is a fem_grid_struct containing the
+          transect information.  The output structure can be passed
+          directly to OPNML routines like COLORMESH2D, LCONTOUR, etc.
+          The actual data for the transect is attached to the structure 
+          in the field .data.  This .data field  is as wide
+          as the number of columns in the node-data specification
+          part of the .inp file.  Vector components will be returned
+          as three scalars, NOT 1 vector. 
+
+          Read the &quot;man&quot; page for TRANSECT (type &quot;man transect&quot; at a UNIX
+          prompt) for more information on the transect output formats.
+
+          Make sure a semi-colon is used at the end of the command; 
+          otherwise READ_UCD will return the output arrays to the screen.
+
+          Since OPNML/MATLAB routines are based on linear triangular
+          finite elements in 2-D, READ_UCD only reads UCD structures 
+          with cell-topologies of type TRI.  No other cell-types, or 
+          mixtures of cell-types, are allowed into OPNML/MATLAB through
+          this routine.  THIS CLEARLY DOES NOT APPLY TO AVS.
+
+ Call as: transdata=read_ucd(inpname);         
+
+ Written by : Brian O. Blanton (Jun 98)
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

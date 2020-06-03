@@ -1,0 +1,37 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>writegrid</H1>
+<H2>(./IO_Functions/writegrid.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>err=writegrid(fem_grid_struct,fnamebase);</pre>
+<HR><H3>Help text</H3>
+<pre>
+WRITEGRID write a fem_grid_struct to separate gridfiles (.ele, .nod,...)
+   WRITEGRID writes the standard gridfiles .ele, .bat, .and nod to
+   disk.  It also writes the neighbor list to a file with extension
+   '.icm' if the .icm field of fem_grid_struct is filled.
+
+   WRITEGRID(FEM_GRID_STRUCT) prompts the user for a gridname, and
+   writes the files &lt;gridname&gt;.ele, &lt;gridname&gt;.bat, and &lt;gridname&gt;.nod
+   (and possibly &lt;gridname&gt;.icm).
+
+   WRITEGRID(FEM_GRID_STRUCT,FNAMEBASE) writes the files 
+   &lt;fnamebase&gt;.ele, &lt;fnamebase&gt;.bat, and &lt;fnamebase&gt;.nod
+   (and possibly &lt;gridname&gt;.icm).
+ 
+   WRITEGRID returns a 0 if successful and a -1 if not. 
+   
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../4.IO_Functions/write_bat.html">write_bat</A>      ./IO_Functions/write_bat.m</LI>
+<LI><A HREF = "../4.IO_Functions/write_ele.html">write_ele</A>      ./IO_Functions/write_ele.m</LI>
+<LI><A HREF = "../4.IO_Functions/write_nod.html">write_nod</A>      ./IO_Functions/write_nod.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

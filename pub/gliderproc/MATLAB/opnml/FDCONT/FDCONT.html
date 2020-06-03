@@ -1,0 +1,297 @@
+<HTML>
+<HEAD>
+
+</HEAD>
+<BODY TEXT="#FFFFFF" 
+      BGCOLOR="#000000" 
+      LINK="#0000EE" 
+      VLINK="#551A8B" 
+      ALINK="#FF0000">
+
+<TITLE>FDCONT Version 1.0 (Beta) Documentation Pages</TITLE>
+
+
+<B><font color="#ff0000" size=+2>FDCONT 1.0 </font> - a finite difference 
+based contouring and vector plotting facility
+for FEM 2-D scalar and vector fields for the DARTMOUTH series of 
+finite element shallow water models.</B>
+
+<br><br><br><br>
+
+<table border=0 cellspacing=1 width=800>
+<tr>
+<td width=50%>
+<p>
+One problem with generating colorbanded contour plots in MATLAB
+is that the resolution of typical FEM meshes tends to burden MATLAB
+when it comes to producing a postscript version of the figure.  Each
+element in the grid is rendered as a patch object, and if shading
+is turned on, the rendered postscript file actually looks bad.
+There is no reasonable way to subsample the FEM nodes.
+
+The purpose of FDCONT is to provide contouring and vector plotting 
+routines that map FEM node-based data to a finite-difference grid that
+covers the FEM domain at an arbitrary level of resolution.  The 
+resulting figure is better handled by MATLAB regarding postscript
+printing, and the results are "publication quality". 
+
+<td>
+<IMG SRC="fig.gif" ALIGN=center>
+
+</table>
+
+<P> FDCONT is written by Dr. Christopher E. Naimie and Brian
+O. Blanton, is implemented entirely in MATLAB5.1 or higher, and is based
+on Christopher E. Naimie's hybrid FORTRAN/MATLAB colorbanding routines.
+
+<P> FDCONT is packaged separately from the rest of OPNML/MATLAB, but 
+it <font color="#FF0000">REQUIRES</font> several routines from the latest
+OPNML toolbox.  Go to the <a
+href="http://www.opnml.unc.edu/OPNML_Matlab/index.html">OPNML/MATLAB</a> webpabes
+for downloading information.
+
+
+<p>These web pages describe the FDCONT routines and provide a
+brief demonstration and an example that generates a figure silimar to
+the one above.
+Familiarity with the OPNML/MATLAB routines is assumed, which uses 
+MATLAB5's structure facility for the grid information i
+(<tt>&#139fem_grid_struct&gt</tt>).
+
+<p> See a 
+<a
+href="http://www-nml.dartmouth.edu/~naimie/NML_REPORTS/NML-98-10/NML-98-10.html"
+>webpage</a>
+of Chris's for figures generated with these tools.
+
+<hr>
+<h4> FDCONT function descriptions</h4>
+<b><pre>
+ FDVECTOR  - plot vectors from a bfd sampling.
+ FDCONTOUR - contour FE scalar on FD grid
+ FE2FD     - interpolate FE data to FD nodes contained in bfd array
+ GENBFD    - generate a "basis function data" file for FD contouring 
+ LNDFILL   - draw land polygons for FEM domain
+ LNDMAKE   - create land masking information for FD CONTOURING
+ READ_BEL  - read a FEM domain .bel file 
+</pre></b>
+<p>
+<b>Synopsis:</b>
+FDCONT works as follows:  an evenly spaced grid is placed on top of 
+the FEM domain, the FEM-based fields are interpolated to these 
+FD points, vectors are plotted, contours are drawn, and then the 
+FD points that lie outside the FEM domain are masked out by a 
+polygon that describes where the FEM boundary lies.
+
+<hr>
+
+<h2><b> Preliminary Steps:</b></h2>  The contouring in FDCONT works by 
+interpolating the FEM data to the regular grid, contouring with
+CONTOURF, and then  covering up the part of the figure that lies outside
+of the FEM domain.  The first step is thus to generate the information
+needed by FDCONTOUR to mask out the exterior of the FEM domain.  
+
+<p><b>LNDMAKE</b>
+<table border=0 cellspacing=7  width=800>
+<tr>
+<td>
+The function LNDMAKE 
+takes as input a <tt>fem_grid_struct</tt> and a <tt>.bel</tt> filename (QUODDY 
+boundary element file) and outputs to disk two files,
+<tt>&#139gridname&gt.lnd</tt>
+and <tt>&#139gridname&gt.lbe</tt>.  These files are node and element lists for a polygon
+that encloses the FEM domain and need only be generated once per
+domain.  They can be placed in the standard location for the given grid,
+since the OPNML/MATLAB function LOADGRID now searches for these files along
+with the standard grid files.  Alternatively, LOADGRID will search the 
+current working directory for <tt> &#139gridname&gt.lnd.lnd</tt> and 
+<tt>&#139gridname&gt.lnd.lbe</tt> in case the 
+user chooses to keep these new file locally.  LOADGRID attaches two new 
+fields to the <tt>fem_grid_struct</tt>,
+<tt>fem_grid_struct.lnd</tt> and <tt>fem_grid_struct.lbe</tt>.  
+Subsequent calls to FDCONTOUR require that the land description fields of the
+<tt>&#139fem_grid_struct&gt</tt> be filled.
+At present. the <tt>.bel</tt> file must be ordered with the exterior
+boundary counterclockwise, starting from the western-most
+boundary node.  Islands follow, connected.  The OPNML boundary 
+file generator (as well as the fortran code CONVCODES) outputs
+the .bel file in this order.  If the resulting figure looks
+wrong, then read the .bel file into GENBEL and output is to 
+a new file name.  Pass this new file namd to LNDMAKE.
+This requirement will be removed in future versions of FDCONT.
+
+
+<td>
+
+<img src="fig2.gif" ALIGN=right>
+</table>
+<p>
+Assuming we have a FEM domain loaded into the structure variable
+<tt>g2s</tt>, then to generate the land description for the long/lat g2s.5b 
+FEM domain, where <tt>g2sll</tt> is the <tt>fem_grid_struct</tt> for the FEM domain, and 
+<tt>g2s.5bll.tides.bel</tt> is a boundary element file for the
+<tt>g2s.5b</tt>
+grid, type:
+<pre>
+  >> lndmake(g2sll,'g2s.5bll.tides.bel')
+</pre>
+LNDMAKE writes the files <tt>g2s.5b.lnd</tt> and <tt>g2s.5b.lbe</tt> to the current
+working directory and displays the land polygons in a figure like the one 
+above.
+
+<hr>
+<H2>Loading the Land Description files</h2> 
+Consider that the above LNDMAKE procedure is done only once per grid. 
+The next time the grid is loaded with LOADGRID,  the new land description
+fields will be filled. (Notice that the 
+<tt>fem_grid_struct</tt> <tt>g2s</tt> now contains the new fields .lnd and .lbe):
+<pre>
+   >> g2s=loadgrid('g2s.5bll')
+   Searching locally ...
+   Got g2s.5bll.nod
+   Got g2s.5bll.ele
+   Got g2s.5bll.bat
+      g2s.5bll.bnd not found; computing from g2s.5bll.ele.
+   Got g2s.5bll.lnd
+   Got g2s.5bll.lbe
+</pre>
+
+<hr>
+<H2>FD node generation: GENBFD</h2> 
+The contouring routine FDCONTOUR needs basis function information
+for each FD node.  This information is contained in a "bfd" array,
+for <font color="#ff0000">b</font>asis <font color="#ff0000">f</font>unction 
+<font color="#ff0000">d</font>ata.  GENBFD generates this array, given a
+FEM domain and discretization levels.  Optionally, GENBFD outputs
+the array to disk since once an interpolation resolution is 
+decided upon, the basis information does not change.  Deciding on 
+the final resolution is up to the user.
+
+<pre>
+>> bfd=genbfd(fem_grid_struct,[nx ny],outflag);
+</pre>
+<table border=0 cellspacing=7 width=800>
+<tr>
+<td>
+<p> GENBFD is called as:
+where <tt>[nx ny]</tt> are the number of FD nodes in the x,y directions
+with which to cover the FEM domain.  If only one integer is passed in
+([nx] as opposed to [nx ny]), then GENBFD generates equally spaced
+nodes, which is preferable for subsampling vector fields (see below).
+(Type <tt>>> help genbfd</tt> for more
+information on the options to GENBFD.)  If <tt>outflag==1</tt>, the bfd array is
+written to disk as gridname.bfd.  It is a "flat" file, and an be loaded
+as <tt>load gridname.bfd</tt>.  For example, <tt>>> bfd=genbfd(g2s,[25 25],0)</tt>
+generates a bfd array called <tt>bfd</tt> from the g2s FEM domain structure,
+with 25 x 25 nodes, and does NOT output the bfd array to disk.  A figure
+similar to the one on the right is plotted to show the level of discretization.
+<td>
+<img src="fig3.gif">
+
+</table>
+
+<hr>
+<h2> FDCONTOUR </h2> Now that we have a bfd array, we can contour something.
+Assume we have some scalar field (from an .s2r file, for example) called 
+<tt>sfe</tt>.  Our bfd array is called <tt>bfd</tt>.  FDCONTOUR requires 
+the user to think about the range of the data and the colorband
+increment; the default is 8 colorbands between <tt>min(sfe)</tt> and 
+<tt>max(sfe)</tt> may not be very satisfactory.
+These are specified as <tt>qmin, qmax, dq</tt>.  Call FDCONTOUR as:
+<pre>
+   >> fdcontour(bfd,sfe,27,36,1,1)
+</pre>
+
+<table border=0 cellspacing=7 width=800>
+<tr>
+<td>
+The above command tells FDCONTOUR to use the basis information in bfd to interpolate the
+FE-based array <tt>sfe</tt> (this one happens to be salinity) over the range
+27-36 at 1 psu increments, and to include a colorbar on the axes. The result:
+<td>
+<img src="fig4.gif" ALIGN=center>
+
+<tr>
+
+<td>
+Now, recall that the basis information was computed for points that lie
+OUTSIDE of the FEM domain, so there is information where it isn't supposed
+to be.  Hence the need to mask out the exterior of the FEM grid.  This is
+why we precomputed the land description information.  Call the function
+LNDFILL to get the figure on the right:
+<pre>
+   >> lndfill(g2s,[1 1 1]*.75)
+</pre>
+<td>
+<img src="fig5.gif" ALIGN=center>
+
+<tr>
+
+<td>
+Lastly, overlay the FEM boundary to outline the exterior and 
+island segments (<tt>>> plotbnd(g2s)</tt>):
+<td>
+<img src="fig6.gif" ALIGN=center>
+
+</table>
+
+FDCONTOUR optionally returns handles [c,h,hcb] to the patch and colorbar 
+axes objects,
+as well as the contour matrix generated by CONTOURF.  This latter array
+can be passed to CLABEL to label the contours.  Call as: <tt>clabel(c,h)</tt>.
+This MUST be done before the land mask is applied.
+<hr>
+
+<table border=0 cellspacing=7 width=800>
+<tr>
+<td>
+
+<h2>FDVECTOR</H2>
+ FDVECTOR is a front-end to VECPLOT2, which 
+handles the extraction and interpolation of the FEM (u,v) 
+data onto the FD points in bfd.  FDVECTOR behaves the same as VECPLOT2, 
+except that the (x,y) vector origins are contained in the bfd file, supplied 
+to FDVECTOR as the first argument.  Suppose we have a depth-averaged
+velocity stored in <tt> ufe vfe </tt>.  Then FDVECTOR is called as:
+<pre>
+   >> fdvector(bfd,ufe,vfe)
+</pre>
+<td>
+<img src="fig7.gif" ALIGN=right>
+</table>
+
+<hr>
+<H2>Final Example</h2>
+Suppose that we are unhappy with the resolution above.  Here is the 
+sequence of MATLAB commands that generates a nicer figure.  GENBFD is
+recalled with higher (equally spaced) resolution.
+
+<table border=0 cellspacing=7 width=800>
+<tr>
+<td>
+
+<font>
+<pre>
+>> bfd=genbfd(g2s,[100],0);
+>> [c,h]=fdcontour(bfd,sfe,27,36,.5,1);
+>> clabel(c,h)
+>> h=lndfill(g2s,[.75 .75 .75]);
+>> hb=plotbnd(g2s);
+>> hvec=fdvector(bfd,ufe,vfe,.75,2,...
+                 'cm/s',-62,39); 
+>> xlabel('Longitude')
+>> ylabel('Latitude')
+</pre></font>
+<td>
+<img src="fig8.gif" ALIGN=left>
+
+</table>
+
+<HR WIDTH="100%">Maintained by: <FONT SIZE=+1>Brian Blanton</FONT>
+<BR><A HREF="mailto:blanton@marine.unc.edu">
+MAIL:
+blanton@marine.unc.edu</a>
+<BR>&nbsp;
+<BR>&nbsp;
+</BODY>
+</HTML>

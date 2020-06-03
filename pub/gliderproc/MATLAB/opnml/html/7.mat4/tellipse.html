@@ -1,0 +1,60 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./mat4]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>tellipse</H1>
+<H2>(./mat4/tellipse.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[htel,umi,ori]=tellipse(xc,yc,u,phi_u,v,phi_v,per,skip,sc,part_flag)</pre>
+<HR><H3>Help text</H3>
+<pre>
+TELLIPSE plot ellipses from amp/phase specification of a vel field
+ htel=tellipse(xc,yc,ua,up,va,vp,per,skip,sc,flag)
+
+  TELLIPSE requires the following arguments:
+      x    - ellipse x-coordinate centers, usually node x's;
+      y    - ellipse y-coordinate centers, usually node y's;
+      ua   - east (u) component amplitudes        
+      up   - east (u) component phases (degrees)       
+      va   - north (v) component amplitudes          
+      vp   - north (v) component phases (degrees)        
+      per  - period of field in hours
+
+  TELLIPSE allows the following optional arguments:
+      skip - number of nodes to skip in subsampling field
+      sc   - scaling factor to use if per is 0.
+      flag - flag for particle-excursion interpretation (0|1)
+ 
+      NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE
+      IF THE SCALING FACTOR NEEDS TO BE SPECIFIED, SKIP
+      MUST ALSO BE SPECIFIED.  IF FLAG IS SPECIFIED, 
+      SC AND SKIP MUST BE SPECIFIED, BOTH OF WHICH CAN BE SET
+      TO 1.
+
+  TELLIPSE scales the ellipses to 10% of the x-axis length 
+  if sc=1; this is the default.  If sc=.5, the ellipse 
+  magnitudes are scaled to 5% of the x-axis length,
+  in the same manner as VECPLOT.  
+
+  TELLIPSE expects the input phases to be in degrees and 
+  attemps to determine the units of the phaselag by computing
+  the range of the phaselag columns in the input matrix.
+  If this range is within [0,2*pi], TELLIPSE reports this as
+  a potential problem.  It does NOT abort due to the possibility
+  of the phaselags correctly being in degrees and still having
+  a range within [0,2*pi].
+
+  NOTES: 1) TELLIPSE plots CCW ellipses in blue and CW ellipses 
+            in red.
+         2) TELLIPSE requires atleast 2 points and vectors.
+
+ Call as: htel=tellipse(x,y,ua,up,va,vp,per,skip,sc,flag);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

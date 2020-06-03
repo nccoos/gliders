@@ -1,0 +1,49 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./basics]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>isint</H1>
+<H2>(./basics/isint.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>retval=isint(x)</pre>
+<HR><H3>Help text</H3>
+<pre>
+
+ ISINT determine if input matrix is integers
+
+ ISINT a Matlab function to determine which input matrix positions 
+       contain an integer or one that can be represented as an integer.
+       ISINT returns 1 where matrix entry is integer and a 0 otherwise.
+
+       If x is a vector or matrix, ISINT returns a vector or matrix 
+       the same size as x with each element of the input being 
+       evaluated as above.
+
+       Ex. 1;  if x=3.2, ISINT returns 0
+               if x=3.0, ISINT returns 1
+               if x=3, ISINT returns 1
+               if x=0, ISINT returns 1
+
+       Ex. 2;  &gt;&gt; x=[3   3.5
+                     4.5 6  ];
+               &gt;&gt; isint(x)
+                 
+               ans = 1 0 
+                     0 1
+
+
+ Call as: &gt;&gt; retval=isint(x)
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function is called by
+<pre><UL>
+<LI><A HREF = "../6.basics/gen_drog_grid.html">gen_drog_grid</A>  ./basics/gen_drog_grid.m</LI>
+<LI><A HREF = "../6.basics/gen_drog_line.html">gen_drog_line</A>  ./basics/gen_drog_line.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

@@ -6,7 +6,7 @@
 % Level1: only thermal lag corrected with default parameter 
 
 clear all;
-close all;
+% close all;
 
 % add paths for required files...
 addpath('../gliderproc');
@@ -26,50 +26,66 @@ projectLabel = 'PEACH_2017';
 
 % Use sensor timestamp or science timestamp
 timeBase_is_sensor_time = false;
-
-% SET THE GLIDER INDEX (Pelagia = 1, Ramses = 2) ...
-for gliderIndex=2:2
+% populate arrays for the deployment start and end dates...
+        % ex. strStart(2, 3) is start date for Ramses, Deployment 3
+strStart = {'10-Jul-2017',nan,nan,nan,nan,nan;'16-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018','5-Jul-2018','7-Sep-2018'};
+strEnd   = {'15-Jul-2017',nan,nan,nan,nan,nan;'29-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018','18-Jul-2018','29-Sep-2018'};
+ebdDIR = strcat(['/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_12/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_07/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_09/store/ascii/ebdasc/']);
+dbdDIR = strcat(['/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_12/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_07/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_09/store/ascii/dbdasc/']);
+          
+% SET THE GLIDER INDEX (Salacia = 1, Ramses = 2) ...
+for gliderIndex=1:1
 
     % SET THE DEPLOYMENT NUMBER (1, 2 or 3) ...
-    for deploymentNumber=4:4
+    for deploymentNumber=1:1
         
         %clearvars -except gliderIndex deploymentNumber;
 
         % glider name string and boolean ctd_Pumped
         if (gliderIndex==1)
-            strGliderName = 'Pelagia';
+            strGliderName = 'Salacia';
             ctd_Pumped = false;
         else 
             strGliderName = 'Ramses';
             ctd_Pumped = false;
-            if ctd_Pumped
-                correctionParams = [0.028 10];
-                correction_parameters = struct('alpha', correctionParams(1),...
-                                    'tau', correctionParams(2));
-            else
-                % Not pumped
-                % SET CORRECTION PARAMETERS STRUCTURE ...
-                correctionParams = [0.1328 0.0208 9.7492 4.6128]; %median from Garau et.al.2011
-%                 correctionParams = [0.1587 0.0214 6.5316 1.5969];
-%                 correctionParams = [0.2368    0.0023    7.9866    1.9207];
-%                 correctionParams = [0.13    0.0195    1    1];
-%                 correctionParams = [0.0752    0.0248   14.7322    3.5474];
-                correction_parameters = struct('alpha_offset', correctionParams(1),...
-                                   'alpha_slope', correctionParams(2),...
-                                   'tau_offset', correctionParams(3),...
-                                   'tau_slope', correctionParams(4));
-            end
         end
+        if ctd_Pumped
+            correctionParams = [0.028 10];
+            correction_parameters = struct('alpha', correctionParams(1),...
+                'tau', correctionParams(2));
+        else
+            % Not pumped
+            % SET CORRECTION PARAMETERS STRUCTURE ...
+%                              correctionParams = [0.1328 0.0208 9.7492 4.6128]; %median from Garau et.al.2011
+            %                  correctionParams = [0.1587 0.0214 6.5316 1.5969]; %
+            %                  longbay
+            correctionParams = [0.2368    0.0023    7.9866    1.9207];
+%             correctionParams = [0.0016    0.0122   22.4810    0.0397];
+%             correctionParams = [0.1013    0.0163    9.6214    8.8860];
+            %                 correctionParams = [0.13    0.0195    1    1];
+            %                 correctionParams = [0.0752    0.0248   14.7322    3.5474];
+            correction_parameters = struct('alpha_offset', correctionParams(1),...
+                'alpha_slope', correctionParams(2),...
+                'tau_offset', correctionParams(3),...
+                'tau_slope', correctionParams(4));
+        end
+        
         
         disp(['Generating Level 1 CTD data for ', strGliderName, ' Deployment ', num2str(deploymentNumber)]);
 
         
 
-        % populate arrays for the deployment start and end dates...
-        % ex. strStart(2, 3) is start date for Ramses, Deployment 3
-        strStart = {nan,nan,nan,nan;'1-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018'};
-        strEnd   = {nan,nan,nan,nan;'30-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018'};
-
+        
         % deployment number string...
         strDeploymentNumber = num2str(deploymentNumber);
 
@@ -87,57 +103,68 @@ for gliderIndex=2:2
 %                          filesep, 'ebdasc', filesep);
 %         dbddir = strcat('C:\Users\NewFolderSamsung\Desktop\scp\', strGliderName, filesep,'0', strDeploymentNumber,...
 %                          filesep, 'dbdasc', filesep);
-          ebddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/ebdasc/');
-          dbddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/');
-%           ebddir = strcat('/pine/scr/l/u/luh/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/ebdasc/');
-%           dbddir = strcat('/pine/scr/l/u/luh/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/dbdasc/');
-
+          ebddir = ebdDIR(deploymentNumber,:);
+          dbddir = dbdDIR(deploymentNumber,:);
+     if gliderIndex == 1
+         ebddir = '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/salacia/2017_07/store/ascii/ebdasc/';
+         dbddir = '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/salacia/2017_07/store/ascii/dbdasc/';
+     end
         % define default bounds for use in plots...
         switch gliderIndex
             case 1  % Pelagia
                 switch deploymentNumber
                     case 1  % Deployment 1
-                        tempBounds =  [17.0 24.0];
-                        salinBounds = [36.0 36.4];
-                        densBounds =  [1025.0 1026.6];
+                        tempBounds =  [22.2 27.9];
+                        salinBounds = [35.8 37];
+                        densBounds =  [1023.0 1025.6];
                         chlorBounds = [0.0 4.0];
 
-                    case 2  % Deployment 2
-                        tempBounds =  [17.0 24.0];
-                        salinBounds = [36.0 36.5];
-                        densBounds =  [1024.5 1026.8];
-                        chlorBounds = [0.0 4.0];
-
-                    case 3  % Deployment 3
-                        tempBounds =  [17.0 24.0];
-                        salinBounds = [35.9 36.7];
-                        densBounds =  [1024.4 1026.4];
-                        chlorBounds = [0.0 4.0];
+%                     case 2  % Deployment 2
+%                         tempBounds =  [17.0 24.0];
+%                         salinBounds = [36.0 36.5];
+%                         densBounds =  [1024.5 1026.8];
+%                         chlorBounds = [0.0 4.0];
+% 
+%                     case 3  % Deployment 3
+%                         tempBounds =  [17.0 24.0];
+%                         salinBounds = [35.9 36.7];
+%                         densBounds =  [1024.4 1026.4];
+%                         chlorBounds = [0.0 4.0];
                 end
             case 2  % Ramses
                 switch deploymentNumber
                     case 1  % Deployment 1 (Only one deployment, using this for now)
-                        tempBounds =  [8.0 23.0];
-                        salinBounds = [35.0 36.4];
-                        densBounds =  [1024.5 1027.5];
+                        tempBounds =  [9.0, 26];
+                        salinBounds = [29.5, 36.7];
+                        densBounds =  [1021, 1026.6];
                         chlorBounds = [0.0 4.0];
 
                     case 2  % Deployment 2
-                        tempBounds =  [9.0 25.0];
-                        salinBounds = [35.2 36.6];
-                        densBounds =  [1024.0 1027.5];
+                        tempBounds =  [12.6, 28];
+                        salinBounds = [29.5 36.7];
+                        densBounds =  [1019.5 1027];
                         chlorBounds = [0.0 4.0];
 
                     case 3  % Deployment 3
-                        tempBounds =  [10.0 24.5];
-                        salinBounds = [35.3 36.7];
-                        densBounds =  [1024.4 1027.4];
+                        tempBounds =  [7.5 19.3];
+                        salinBounds = [29.5 36];
+                        densBounds =  [1022.6 1026.5];
                         chlorBounds = [0.0 4.0];
-                    case 4  % Deployment 3
-                        tempBounds =  [10.0 24.5];
-                        salinBounds = [35.3 36.7];
-                        densBounds =  [1024.4 1027.4];
-                        chlorBounds = [0.0 4.0];    
+                    case 4  % Deployment 4
+                        tempBounds =  [8.45 26.2];
+                        salinBounds = [26.65 37];
+                        densBounds =  [1017.65 1026.3];
+                        chlorBounds = [0.0 4.0]; 
+                     case 5  % Deployment 3
+                        tempBounds =  [23.4 30];
+                        salinBounds = [28.65 37];
+                        densBounds =  [1018.4 1024.85];
+                        chlorBounds = [0.0 4.0];
+                     case 6  % Deployment 4
+                        tempBounds =  [13.25 29.5];
+                        salinBounds = [26.5 36];
+                        densBounds =  [1016 1026];
+                        chlorBounds = [0.0 4.0];
                 end
         end
         
@@ -158,7 +185,10 @@ for gliderIndex=2:2
         deploymentInfo.ebddir = ebddir;
         deploymentInfo.dbddir = dbddir;
         % Call gliderFlight_Generate_L1_Data and gliderCTD_Generate_L1_Data
+        % remove the flight generating function and merge that into the CTD
+        % generating function
 %         flight = gliderFlight_Generate_L1_Data(deploymentInfo);
+
         disp('start!')
         [flight, science, x] = gliderCTD_Generate_L1_Data(deploymentInfo,myBounds,correction_parameters,ctd_Pumped,timeBase_is_sensor_time);
 %         movefile Ramses_Deployment2_CTD_L1_no.mat /Users/luhan/Documents/UNC2017/Data/Ramses/09:17/

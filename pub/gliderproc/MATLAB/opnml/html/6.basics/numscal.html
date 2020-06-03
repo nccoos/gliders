@@ -1,0 +1,36 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./basics]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>numscal</H1>
+<H2>(./basics/numscal.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>h=numscal(x,y,Q,ps)</pre>
+<HR><H3>Help text</H3>
+<pre>
+
+ NUMSCAL label scalar (Q) values at x,y locations on current axes.
+
+ Input:  x  - x-coordinate array
+         y  - y-coordinate array
+         Q  - scalar (1-D vector)
+         ps - point size for screen text numbers (optional, def=8)
+
+         NOTES: 1) NUMSCAL overlays existing plots regardless of
+                   the state of hold
+                2) NUMSCAL determines if the current density of nodes
+                   is too high to make the node numbers readable.
+                   If node density is too high, NUMSCAL displays 
+                   a warning box asking the user if NUMSCAL
+                   should plot the numbers anyway.
+
+ Call as: &gt;&gt; numscal(x,y,Q,ps);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

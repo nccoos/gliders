@@ -1,0 +1,21 @@
+   for {i=0;i<nx+1;i++){/*         waitbar((i-1)/nx) */
+      for {j=0;j<ny+1;j++){
+         if ~isnan(JXY(i,j)){
+	    zref=FDZGRID(i,j,:);
+            for {k=0;k<nz+1;k++){
+	       [b2,n2,b1,n1]=basis1d2(zref,Z3D(i,j,k));
+	       N1_3D(i,j,k)=n1;
+	       B1_3D(i,j,k)=b1;
+	       N2_3D(i,j,k)=n2;
+	       B2_3D(i,j,k)=b2;
+	    }
+	 }
+      }
+   }
+
+   /* Set pointer to lhs */
+   start_of_array=(unsigned char *)mxGetPr(S);
+   bytes_to_copy=MNP*mxGetElementSize(S);
+   memcpy(start_of_array,sfd,bytes_to_copy);
+   plhs[0]=S;
+   return;

@@ -1,0 +1,47 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>v3c</H1>
+<H2>(./IO_Functions/v3c.m)</H2>
+<HR><H3>Help text</H3>
+<pre>
+V3C Dartmouth FEM File Standard Filetype (Description).
+
+       Output format for a 3-D, complex-valued vector field.
+
+       This filetype is read by the OPNML MATLAB function 
+       <A HREF = "../4.IO_Functions/read_v3c.html">READ_V3C</A>.  Type &quot;help <A HREF = "../4.IO_Functions/read_v3c.html">read_v3c</A>&quot; for more information.
+
+       The .v3c file contains 4 header lines:
+          1) The geometric meshname
+          2) User-defined file description line
+          3) NNV - number of vertical nodes
+          4) Frequency (radians/sec)
+
+       Then, there are NN lines of the form:
+             I  Z(I,J) Uamp(I,J) Upha(I,J) Vamp(I,J) Vpha(I,J) Wamp(I,J) Wpha(I,J)
+
+       where:  Z(I,J)    - vertical co-ordinate at node (I,J)
+               Uamp(I,J) - amp of x-velocity at node (I,J)
+               Upha(I,J) - phase of x-velocity at node (I,J) (degrees)
+               Vamp(I,J) - amp of y-velocity at node (I,J)
+               Vpha(I,J) - phase of y-velocity at node (I,J) (degrees)
+               Wamp(I,J) - amp of z-velocity at node (I,J)
+               Wpha(I,J) - phase of z-velocity at node (I,J) (degrees)
+               J=1,NNV   - the inner loop over 1-D vertical nodes
+               I=1,NN    - the outer loop over 2-D horizontal nodes
+               NN        - the number of horizontal nodes in the mesh
+ 
+      See the document &quot;DATA FILE STANDARDS FOR THE GULF OF MAINE PROJECT&quot;
+      for more details. 
+</pre>
+<HR><H3>Cross-Reference Information</H3>This  is called by
+<pre><UL>
+<LI><A HREF = "../4.IO_Functions/read_fem_data.html">read_fem_data</A>  ./IO_Functions/read_fem_data.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

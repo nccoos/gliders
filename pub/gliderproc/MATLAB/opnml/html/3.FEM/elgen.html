@@ -1,0 +1,49 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>elgen</H1>
+<H2>(./FEM/elgen.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>ellist=elgen(nhorz,nvert)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ 
+ ELGEN generate an element list for a rectangular FEM mesh
+ 
+ ELGEN generate an element list for a FEM mesh with nhorz nodes in the 
+       x-direction and nvert nodes in the y-direction.  This function 
+       is used primarily to provide element lists for transect data
+       so that contours can be computed for the normal component of
+       the transect.  
+
+       Example: If a transect is made with 25 horizontal and 10 vertical
+       stations,  ELGEN would be called as follows:
+       
+           &gt;&gt; ellist=elgen(25,10);
+
+       The result would be an element list containing the node numbers
+       for the three vertices of 2*(nhorz-1)*(nvert-1) elements in a matrix
+       with 2*(nhorz-1)*(nvert-1) rows and 3 columns.
+
+
+        Brian O. Blanton
+        Curriculum in Marine Sciences
+        Ocean Processes Numerical Modeling Laboratory
+        15-1A Venable Hall
+        CB# 3300
+        Uni. of North Carolina
+        Chapel Hill, NC
+                 27599-3300
+
+        919-962-4466
+        blanton@marine.unc.edu
+
+        September 1994
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

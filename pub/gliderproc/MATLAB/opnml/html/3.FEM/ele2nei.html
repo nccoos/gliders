@@ -1,0 +1,34 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>ele2nei</H1>
+<H2>(./FEM/ele2nei.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>nei=ele2nei(e,x,y)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ELE2NEI - build a FEM neighbor list from element and node lists
+   ELE2NEI computes the neighbor list for a FEM mesh specified
+   by the triangular element lists.  Each node's neighbor list
+   is then sorted into counter-clockwise order.
+
+   The resulting neighbor list can be passed to WRITE_NEI
+   to output a FEM neighbor file (.nei) to disk.
+
+  INPUTS:  e - 3-column element connectivity list (REQ)
+           x - x-coordinate list (REQ)
+           y - y-coordinate list (REQ)
+ OUTPUTS:  nei - neighbor list (REQ)
+
+    CALL: nei=ele2nei(e,x,y);
+
+ Written by : Brian O. Blanton 
+              March 1996
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

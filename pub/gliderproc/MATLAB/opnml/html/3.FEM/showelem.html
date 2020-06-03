@@ -1,0 +1,42 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>showelem</H1>
+<H2>(./FEM/showelem.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>showelem(fem_grid_struct,ie)</pre>
+<HR><H3>Help text</H3>
+<pre>
+SHOWELEM highlight and display statistics on selected element
+
+  SHOWELEM highlights a user-specified element, either 
+  by mouse-click or by giving SHOWELEM an element number.
+  The mesh must have been previously drawn by the OPNML/MATLAB
+  routine <A HREF = "../3.FEM/drawelems.html">DRAWELEMS</A> for SHOWELEM to work.
+             
+   INPUT :  <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> - (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)     
+            ie - element to highlight (OPT)
+            If ie is not provided, SHOWELEM prompts the user to
+            click on the FEM element drawing to specify an element.
+
+ OUTPUTS :  NONE (display to figure)
+
+    CALL :  &gt;&gt; showelem(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,ie)
+     or
+            &gt;&gt; showelem(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>)    
+             
+ Written by : Brian O. Blanton
+ Fall 1997
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/findelem.html">findelem</A>       ./FEM/findelem.m</LI>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

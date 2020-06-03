@@ -1,0 +1,41 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>belint</H1>
+<H2>(./FEM/belint.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>ret_struct=el_areas(fem_grid_struct)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ BELINT - compute shape function information for a FEM domain
+          
+          BELINT(<A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>) computes shape function 
+          information to be used in element finding (FINDELE).
+          BELINT must return a new structure containing the input
+          structure and adding the new components.  The returned
+          structure now includes:...
+
+  INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> - (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)       
+           
+ OUTPUT : new_struct (REQ) - new structure with areas
+
+   CALL : &gt;&gt;new_struct=belint(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>);
+
+ Written by : Brian O. Blanton 
+ Summer 1997
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+This function is called by
+<pre><UL>
+<LI><A HREF = "../3.FEM/interp_scalar.html">interp_scalar</A>  ./FEM/interp_scalar.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

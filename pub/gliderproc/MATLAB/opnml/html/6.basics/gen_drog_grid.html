@@ -1,0 +1,61 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./basics]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>gen_drog_grid</H1>
+<H2>(./basics/gen_drog_grid.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>outmat=gen_drog_grid(nx,ny,nlev,z,box_coords)</pre>
+<HR><H3>Help text</H3>
+<pre>
+GEN_DROG_GRID Mouse-driven drogue input coordinate generator
+
+ GEN_DROG_GRID - Mouse-driven drogue input coordinate generator prompts
+                 the user to draw a box on the current figure, and returns
+                 an array of coordinates suitable for a drogue
+                 initialization file.
+
+  INPUT:  nx,ny  - number of drogues in the x and y direction (REQUIRED, 
+                   INTEGERS).  If nx or ny==1, then the output is a 
+                   diagonal line from between starting and ending points.
+          nlev   - number of vertical levels to duplicate the 
+                   horizontal positions (OPTIONAL, DEFAULT=1, INTEGER)
+                   If nlev is given, then so must z.
+          z      - the depth to assign to the horizontal drogue
+                   locations.  z must be of length 1:nlev, providing
+                   one depth for each horizontal level.  (OPTIONAL, FLOAT)
+                   In this version, z must be a single
+                   number.  It will be used as the depth for the (nx*ny)
+                   horizontal locations. 
+
+          box_coords - optional 4x1 vector defining the sample region.  
+                       The 4 values are [X1 Y1 X2 Y2], and if defined
+                       they take precedence over the mouse-driven facility.
+
+ OUTPUT:  outmat - if z is supplied as input, outmat is a (nx*ny) by 3 
+                   array of 3-D starting locations
+                   if z is NOT supplied as input, outmat is a (nx*ny) by 2
+                   array of 2-D starting locations
+
+ Call as: outmat=gen_drog_grid(nx,ny)
+      OR: outmat=gen_drog_grid(nx,ny,z)
+      OR: outmat=gen_drog_grid(nx,ny,nlev,z)
+      OR: outmat=gen_drog_grid(nx,ny,nlev,z,box_coords)
+
+ Written by :Brian O. Blanton
+ Summer 1998
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../6.basics/isint.html">isint</A>          ./basics/isint.m</LI>
+</UL></pre>
+This function is called by
+<pre><UL>
+<LI><A HREF = "../6.basics/gen_drog_line.html">gen_drog_line</A>  ./basics/gen_drog_line.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

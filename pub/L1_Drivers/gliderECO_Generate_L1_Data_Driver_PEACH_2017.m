@@ -23,12 +23,26 @@ projectLabel = 'PEACH_2017';
 
 % Use sensor timestamp or science timestamp
 timeBase_is_sensor_time = true;
-
+strStart = {nan,nan,nan,nan,nan,nan;'16-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018','5-Jul-2018','7-Sep-2018'};
+strEnd   = {nan,nan,nan,nan,nan,nan;'29-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018','18-Jul-2018','29-Sep-2018'};
+ebdDIR = strcat(['/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_12/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/ebdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_07/store/ascii/ebdasc/'
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_09/store/ascii/ebdasc/']);
+dbdDIR = strcat(['/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_05/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_09/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2017_12/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_07/store/ascii/dbdasc/';
+          '/Users/luhan/Documents/OneDrive - University of North Carolina at Chapel Hill/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_09/store/ascii/dbdasc/']);
+          
 % SET THE GLIDER INDEX (Pelagia = 1, Ramses = 2) ...
 for gliderIndex=2:2
 
     % SET THE DEPLOYMENT NUMBER (1, 2 or 3) ...
-    for deploymentNumber=4:4
+    for deploymentNumber=2:6
         
         %clearvars -except gliderIndex deploymentNumber;
 
@@ -41,10 +55,6 @@ for gliderIndex=2:2
         
         disp(['Generating Level 1 ECO data for ', strGliderName, ' Deployment ', num2str(deploymentNumber)]);      
 
-        % populate arrays for the deployment start and end dates...
-        % ex. strStart(2, 3) is start date for Ramses, Deployment 3
-        strStart = {nan,nan,nan,nan;'1-May-2017','5-Sep-2017','22-Dec-2017','15-May-2018'};
-        strEnd   = {nan,nan,nan,nan;'30-May-2017','24-Sep-2017','10-Jan-2018','8-Jun-2018'};
         
         % deployment number string...
         strDeploymentNumber = num2str(deploymentNumber);
@@ -59,11 +69,8 @@ for gliderIndex=2:2
         %datadir = strcat('/Users/haloboy/Documents/MASC/MATLAB/CTD_data_correction/GLIDER_CTD_DATA_LEVEL0/',...
         %datadir = strcat('GLIDER_DATA_LEVEL0/', strGliderName, '_Deployment', strDeploymentNumber, '/');
         % My full set [SBL]
-%         ebddir = 'C:\Users\slockhar\Projects\Glider\GliderFiles\SECOORA_2016\Ramses\history\All\EndOfMissionSecoora2016\ebdasc\';
-%         dbddir = 'C:\Users\slockhar\Projects\Glider\GliderFiles\SECOORA_2016\Ramses\history\All\EndOfMissionSecoora2016\dbdasc\';
-         ebddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/ebdasc/');
-         dbddir = strcat('/Users/luhan/Documents/2017/whewell.marine.unc.edu/data/peach/level0/ramses/2018_05/store/ascii/dbdasc/');
-        
+        ebddir = ebdDIR(deploymentNumber,:);
+        dbddir = dbdDIR(deploymentNumber,:);
         % define default bounds for use in plots...
         switch gliderIndex
             case 1  % Pelagia
@@ -88,6 +95,10 @@ for gliderIndex=2:2
                     case 3  % Deployment 3
                         chlorBounds = [0.0 4.0];
                     case 4  % Deployment 4
+                        chlorBounds = [0.0 4.0];
+                    case 5  % Deployment 3
+                        chlorBounds = [0.0 4.0];
+                    case 6  % Deployment 4
                         chlorBounds = [0.0 4.0];
                 end
         end

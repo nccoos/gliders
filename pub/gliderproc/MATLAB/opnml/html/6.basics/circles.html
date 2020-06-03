@@ -1,0 +1,68 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./basics]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>circles</H1>
+<H2>(./basics/circles.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>hcir=circles(xc,yc,rad,p1,v1,p2,v2,p3,v3,p4,v4,...</pre>
+<HR><H3>Help text</H3>
+<pre>
+ 
+ CIRCLES  plot circles at optionally input centers with required input radii.
+ 
+          CIRCLES(RAD) draws circles at the origin with radii RAD.
+
+          CIRCLES(XC,YC,RAD) draws circles with radii RAD and with
+          centers at (XC,YC).
+
+ Input  : XC   - x-coord vector of circle centers (optional, See Note 4)
+          YC   - y-coord vector of circle centers (optional, See Note 4)
+          RAD  - vector of circle radii (required)
+          p1,v1... - parameter/value plotting pairs (optional, See Note 4)
+
+ Output : HCIR - vector of handles to circles drawn.
+
+          The parameter/value pairs currently allowed in the CIRCLES
+          function are as follows ( default values appear in {} ) :
+
+                Color       {'r' = red}
+                LineStyle   {'-' = solid}
+                LineWidth   {0.5 points; 1 point = 1/72 inches}
+                MarkerSize  {6 points}
+
+          See the Matlab Reference Guide entry on the LINE command for
+          a complete description of parameter/value pair specification.
+
+          The idea and some of the constructs used in pv decoding
+          in this routine come from an unreleased MathWorks function
+          called polar2.m written by John L. Galenski III
+          and provided by Jeff Faneuff.
+
+          NOTES: 1) CIRCLES always overlays existing axes, regardless
+                    of the state of 'hold'.
+                 2) CIRCLES does not force the axis to be 'equal'.
+                 3) CIRCLES is a special case of the routine ELLIPSES;
+                    although ELLIPSES can be used to draw circles, 
+                    CIRCLES is much faster at drawing circles because 
+                    it does not deal with orientation and eccentricity
+                    parameters.
+                 4) If you want to specify parameter/vaule plotting 
+                    attributes with circles at the origin, you must pass
+                    CIRCLES 0-vectors for the x- and y- coordinates of
+                    the circles.  If you don't, CIRCLES will not be able 
+                    to decode the parameter/value sequence and you will 
+                    probably get the following error:
+                                ??? Error using ==&gt; +
+                                Matrix dimensions must agree.
+
+ Call as: &gt;&gt; hcir=circles(xc,yc,rad,p1,v1,p2,v2,...)
+
+ Written by : Brian O. Blanton
+         
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

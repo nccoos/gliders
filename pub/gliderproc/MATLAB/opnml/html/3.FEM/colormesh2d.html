@@ -1,0 +1,44 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>colormesh2d</H1>
+<H2>(./FEM/colormesh2d.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>rv1=colormesh2d(fem_grid_struct,Q,nband)</pre>
+<HR><H3>Help text</H3>
+<pre>
+COLORMESH2D draw a FEM mesh in 2-d colored by a scalar quantity.
+
+   INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)
+	    Q	      - scalar to color with (optional)
+	    nband     - number of contour bands to compute (optional)
+
+	    With no scalar specified to contour, COLORMESH2D
+	    defaults to the bathymetry <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>.z
+
+  OUTPUT : hp - vector of handles, one for each element patch drawn.
+
+   COLORMESH2D colors the mesh using the scalar Q.  If Q
+   is omitted from the argument list, COLORMESH2D draws
+   the element connectivity in black and white.
+
+ NOTE: This is one of the few (2 or 3) OPNML MATLAB functions that 
+       deletes existing patch objects in  the current axes before 
+       rendering the surface.  This is to avoid having an unmanageable 
+       number of patch objects on the screen.  
+
+   CALL : &gt;&gt; hp=colormesh2d(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,Q,nband)
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

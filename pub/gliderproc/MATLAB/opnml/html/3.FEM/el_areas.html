@@ -1,0 +1,56 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>el_areas</H1>
+<H2>(./FEM/el_areas.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[ret_struct,ineg]=el_areas(fem_grid_struct)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ EL_AREAS - compute triangular finite element areas
+
+         EL_AREAS(<A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>) computes the areas for the 
+         elements of the FEM domain described in the 
+         structure <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>.  The function must
+         return a new structure, which is identical to the 
+         input structure with the element areas attached.
+         The element areas are contained in the field .ar,
+         so that the new structure now includes:
+
+         .ar   - element areas                    [ne x 1 double]  
+         
+
+         EL_AREAS optionally returns an index of element
+         numbers whose areas are negative (if any).
+         Negative element areas indicate clockwise elemental
+         node numbering, instead of the conventional counter-
+         clockwise numbering.
+
+  INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> - (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)       
+           
+ OUTPUT : new_struct (REQ) - new structure with areas
+          ineg       (OPT) - index of negative area elements
+
+   CALL : &gt;&gt;new_struct=el_areas(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>);
+    or 
+          &gt;&gt;[new_struct,ineg]=el_areas(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>);
+
+ Written by : Brian O. Blanton 
+ Summer 1997
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+This function is called by
+<pre><UL>
+<LI><A HREF = "../3.FEM/interp_scalar.html">interp_scalar</A>  ./FEM/interp_scalar.m</LI>
+<LI><A HREF = "../3.FEM/loadgrid.html">loadgrid</A>       ./FEM/loadgrid.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

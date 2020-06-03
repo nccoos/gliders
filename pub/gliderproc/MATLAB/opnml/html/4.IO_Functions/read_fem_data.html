@@ -1,0 +1,54 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_fem_data</H1>
+<H2>(./IO_Functions/read_fem_data.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>fem_data_struct=read_fem_data(fname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_FEM_DATA read a FEM output file of standard filetype.
+   READ_FEM_DATA is part of a suite of OPNML I/O functions  
+   to read specific filetypes pertaining to FEM model  
+   input and output.   These functions allow the user to
+   get these data files into MATLAB without copying the
+   files and removing the header info by hand.
+
+   READ_FEM_DATA reads all FEM filetypes (.<A HREF = "../4.IO_Functions/s2r.html">s2r</A>,.<A HREF = "../4.IO_Functions/v2c.html">v2c</A>,...),
+   as detailed in &quot;Data File Standards for the Gulf of Maine
+   Project&quot; from the Numerical Methods Laboratory at 
+   Dartmouth College.  
+
+   READ_FEM_DATA returns a FEM_DATA_STRUCT to the local 
+   workspace that contains all into needed by subsequent 
+   routines.
+
+   If FNAME is omitted, READ_FEM_DATA enables a file 
+   browser with which the user can specify the  file.
+
+   Otherwise, FNAME is the name of a standard filetype, 
+   relative or absolute (fullpath), including the filetype
+   suffix.  This input is a char array so it must be enclosed 
+   in single quotes.
+ 
+   See FEM_DATA_STRUCT for a description of the struct array
+   returned.
+ Call as: &gt;&gt; data_struct=read_fem_data(fname);
+
+ Written by : Brian O. Blanton
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../4.IO_Functions/s2c.html">s2c</A>            ./IO_Functions/s2c.m</LI>
+<LI><A HREF = "../4.IO_Functions/s3c.html">s3c</A>            ./IO_Functions/s3c.m</LI>
+<LI><A HREF = "../4.IO_Functions/s3r.html">s3r</A>            ./IO_Functions/s3r.m</LI>
+<LI><A HREF = "../4.IO_Functions/v2r.html">v2r</A>            ./IO_Functions/v2r.m</LI>
+<LI><A HREF = "../4.IO_Functions/v3c.html">v3c</A>            ./IO_Functions/v3c.m</LI>
+<LI><A HREF = "../4.IO_Functions/v3r.html">v3r</A>            ./IO_Functions/v3r.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

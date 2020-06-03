@@ -1,0 +1,42 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>write_nei</H1>
+<H2>(./IO_Functions/write_nei.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>errno=write_nei(x,y,bc,z,nbs,fname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+WRITE_NEI Write a FEM neighbor file in .nei format.
+   WRITE_NEI requires 5 input arguments, with 1 optional argument:
+      1) x   - x-coordinates of the grid (REQ)		  
+      2) y   - y-coordinates of the grid (REQ)		  
+      3) bc  - boundary codes for each horizontal node (REQ)
+      4) z   - bathymetry of the grid (REQ)		  
+      5) nbs - neighbor list of grid's nodes (REQ)
+      6) fname - output filename (OPT)			  
+
+   If fname is omitted, WRITE_NEI enables a file browser
+   with which the user can specify the .NEI file.
+   Otherwise, fname is the name of the .nei file, relative 
+   or absolute (fullpath), including the suffix .'nei'.
+   This input is a string so it must be enclosed in
+   single quotes. 
+
+   WRITE_NEI checks the lengths of input arrays and the
+   structure of the neighbor list for some minimal
+   error checking.  This is not, however, very rigorous.
+
+ CALL: err=write_nei(x,y,bc,z,nbs,fname);
+          err=write_nei(x,y,bc,z,nbs);
+
+ Written by : Brian O. Blanton 
+              March 1996
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

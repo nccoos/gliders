@@ -1,0 +1,61 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>sample_field_2d</H1>
+<H2>(./FEM/sample_field_2d.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>outmat=sample_field_2d(fem_grid_struct,nx,ny,Q,box_coords)</pre>
+<HR><H3>Help text</H3>
+<pre>
+SAMPLE_FIELD_2D Mouse-driven 2-D FEM Field Sampler
+   SAMPLE_FIELD_2D is a mouse-driven 2-D field sampler prompts
+   the user to draw a box on the current figure, and 
+   returns an array of coordinates and interpolated 
+   field values.  The input field array can be any number
+   of columns wide (scalar, vector, etc.) but must be as
+   long as the node coordinate lists in <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>.
+   I.e., the fields to interpolate will usually come from 
+   the FEM domain itself.
+
+  INPUT:  <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> - FEM domain structure on which the field
+                   to sample is related (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>).
+          nx,ny  - number of points in the x and y direction at which to 
+                   sample the fields Q.  (REQUIRED, INTEGERS)
+          Q      - the fields to sample. This array must be the same length as 
+                   the node coordinate arrays in the valid <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>
+                   passed in, but the number of columns is arbitrary.
+
+          box_coords - optional 4x1 vector defining the sample region.  
+                       The 4 values are [X1 Y1 X2 Y2], and if defined
+                       they take precedence over the mouse-driven facility.
+
+ OUTPUT:  S      - an array containing the sample points and sample values.
+                   If nx or ny==1, then S contains the sample points and 
+                   sample values in columns.  Otherwise, S is an 
+                   [nx X ny X ncol] array, where ncol is the number of
+                   columns in the input array Q and the first 2 levels of
+                   S are the X and Y coordinates (X=S(:,:,1), Y=S(:,:,2)).
+                   Points not located within FEM domain are assigned NaN's 
+                   as field values.
+ 
+                   To contour the results in the case where nx and ny &gt; 1, 
+                   call MATLAB's contourf routine with S appropriately
+                   sampled.  For example:
+                   &gt;&gt; contourf(S(:,:,1),S(:,:,2),S(:,:,3))
+           
+   CALL: S=sample_field_2d(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,nx,ny,Q)
+
+ Written by Brian O. Blanton
+ Summer 1998
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

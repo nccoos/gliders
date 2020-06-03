@@ -1,0 +1,44 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>is_valid_struct2</H1>
+<H2>(./FEM/is_valid_struct2.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>errflag=is_valid_struct2(fem_grid_struct)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ IS_VALID_STRUCT2 - Determine if the input structure is &quot;valid&quot;
+
+     IS_VALID_STRUCT2 determines whether or not the input
+     structure contains additional field data beyond the 
+     minimum valid fields checked for by  <A HREF = "../3.FEM/is_valid_struct.html">IS_VALID_STRUCT</A>.
+     Recall that a valid <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A> contains (atleast) 
+     the following (NOT EMPTY) fields:
+
+       .name,.e,.x,.y,.z,.bnd  
+
+     IS_VALID_STRUCT2 verifies the existence of .A, .B, .A0,
+     and .T which are filled by <A HREF = "../3.FEM/belint.html">BELINT</A>, and of .ar filled by
+     <A HREF = "../3.FEM/el_areas.html">EL_AREAS</A>.  These additional FEM fields are needed by 
+     OPNML/MATLAB element-finding, basis  and interpotion 
+     routines.
+
+ CALL: errflag=is_valid_struct2(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>)
+       
+ Written by : Brian O. Blanton
+ Summer 1998
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function is called by
+<pre><UL>
+<LI><A HREF = "../3.FEM/basis2d.html">basis2d</A>        ./FEM/basis2d.m</LI>
+<LI><A HREF = "../3.FEM/findelem.html">findelem</A>       ./FEM/findelem.m</LI>
+<LI><A HREF = "../3.FEM/interp_scalar.html">interp_scalar</A>  ./FEM/interp_scalar.m</LI>
+<LI><A HREF = "../3.FEM/which_elem.html">which_elem</A>     ./FEM/which_elem.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

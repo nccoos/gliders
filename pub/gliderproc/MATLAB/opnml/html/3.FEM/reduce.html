@@ -1,0 +1,43 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>reduce</H1>
+<H2>(./FEM/reduce.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[re,rx,ry,rz,rbnd,perm]=reduce(e,x,y,z,b)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ REDUCE compute a bandwidth-reduced FEM domain connectivity list
+
+        REDUCE reduces the bandwidth of a FEM element list
+        using the symmetric reverse Cuthill-McKee bandwidth reduction 
+        algorithm.  It employs the MATLAB routine SYMRCM to perform 
+        the reordering and then permutes the remaining input arguments 
+        according to the new node numbering. 
+
+  INPUT: e        -  element list; 3 (.tri) or 4 (.ele) columns wide (REQ)
+         x,y,z    -  nodal coordinate lists (OPT)
+
+ OUTPUT: re       -  reordered element list (REQ)
+         rx,ry,rz -  reordered nodal coordinates (OPT)
+         rb       -  reordered boundary segment list (OPT)
+         perm     -  permutation list (REQ)
+
+   CALL: REDUCE requires one of the following calling formats:
+         1) [re,perm]=reduce(e);
+         2) [re,rx,ry,rz,rbnd,perm]=reduce(e,x,y,z);
+
+ Written by : Brian O. Blanton 
+              October 1995
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/bwidth.html">bwidth</A>         ./FEM/bwidth.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

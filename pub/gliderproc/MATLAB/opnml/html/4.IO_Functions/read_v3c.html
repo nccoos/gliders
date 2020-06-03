@@ -1,0 +1,55 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_v3c</H1>
+<H2>(./IO_Functions/read_v3c.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data,nnv]=read_v3c(fname);</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_V3C read a FEM output file of .<A HREF = "../4.IO_Functions/v3c.html">v3c</A> filetype.
+   READ_V3C is part of a suite of OPNML I/O functions  
+   to read specific filetypes pertaining to FEM model  
+   input and output.   These functions allow the user to
+   get these data files into MATLAB without copying the
+   files and removing the header info by hand.
+
+   READ_V3C reads the FEM filetype .<A HREF = "../4.IO_Functions/v3c.html">v3c</A>, as detailed in
+   &quot;Data File Standards for the Gulf of Maine Project&quot;
+   from the Numerical Methods Laboratory at Dartmouth
+   College.  (This document is located in the OPNML
+   notebook under External Documents.)  There are eight
+   columns, the first of which is the node number.  The
+   remaining columns are floating point.  
+
+   Input :   If fname is omitted, READ_V3C enables a file browser
+             with which the user can specify the .<A HREF = "../4.IO_Functions/v3c.html">v3c</A> file.
+
+             Otherwise, fname is the name of the .<A HREF = "../4.IO_Functions/v3c.html">v3c</A> file, relative 
+             or absolute (fullpath), including the suffix '.<A HREF = "../4.IO_Functions/v3c.html">v3c</A>'.
+             This input is a string so it must be enclosed in single 
+             quotes. The header lines are discarded.
+  Output :   The data part is returned in the variable data. 
+
+             Call READ_V3C as:
+             &gt;&gt; [data,nnv]=read_v3c(fname);
+
+             If READ_V3C cannot locate the file, it exits, returning 
+             a -1 instead of the data matrix.
+
+   NOTES :   The <A HREF = "../4.IO_Functions/v3c.html">v3c</A> filetype contains 3-D data; i.e., complex-valued
+             velocity data at each vertical node per horizontal node.
+             The <A HREF = "../4.IO_Functions/v3c.html">v3c</A> format has phase in degrees while related .vel
+             file has phase in radians.
+
+ Call as: [data,nnv]=read_v3c(fname);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

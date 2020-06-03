@@ -1,0 +1,41 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FDCONT]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>fe2fd</H1>
+<H2>(./FDCONT/fe2fd.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>fd=fe2fd(fe,bfd)</pre>
+<HR><H3>Help text</H3>
+<pre>
+FE2FD - interpolate FE data to FD nodes contained in bfd array
+   FE2FD interpolates a 2-D FEM scalar field onto the FD nodes 
+   contained in a bfd array.
+
+   Input:  fe  -  column vector of FEM scalar data
+           bfd -  basis function data array 
+
+           <A HREF = "../2.FDCONT/fdcontour.html">FDCONTOUR</A> takes care to pass in only the 
+           node numbers and basis functions to FE2FD.  
+           Other calls to this function must be careful
+           to pass in only columns 4:9 of the bfd array;
+           i.e., fe2fd(q,bfd(:,4:9))
+
+   Output: fd  -  FD-based interpolated data
+
+   Written by:
+   Christopher E. Naimie
+   Dartmouth College
+   christopher.e.naimie@dartmouth.edu
+-----------------------------------------------------------------------
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function is called by
+<pre><UL>
+<LI><A HREF = "../2.FDCONT/fdcontour.html">fdcontour</A>      ./FDCONT/fdcontour.m</LI>
+<LI><A HREF = "../2.FDCONT/fdvector.html">fdvector</A>       ./FDCONT/fdvector.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

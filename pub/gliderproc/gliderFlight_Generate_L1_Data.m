@@ -47,8 +47,9 @@ nfile = size(files, 1);
 
 for i=1:nfile
     % protect against empty dbd file
+    filename = strcat(dbddir, files(i,:))
     if(Dstruct(i).bytes>0)
-        flight = read_gliderasc2([dbddir, files(i,:)]);
+        flight = read_gliderasc2(filename);
 
         % if the number of values (in flight.data) is less than the number of 
         % vars (in flight.vars), this means that the data were not completely read
@@ -141,3 +142,4 @@ save(strMatFileName,...
      'pitch',...
      'ptime',...
      'ptime_datenum');
+ 

@@ -1,0 +1,10 @@
+New functions, and their HELP text
+
+ EQNSTATE2 - Matlab implementation of QUODDY's Equation of State.
+ ICQ4INFO - GUI display of .icq4 file contents
+ PLOTDROG3 - plot 3D drogue .pth file output from DROG3D or DROG3DDT.
+ READ_ICQ4 - read a QUODDY4 .icq4 file
+ READ_PTH - read drogue .pth file output from DROG3D or DROG3DDT.
+
+
+

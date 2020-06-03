@@ -1,0 +1,101 @@
+% Load in nod and ele files, find boundary if one does not exist locally
+%     if one does not exist locally it will wait until you tell it to save the bnd file or not.
+[ele,x,y,z,bnd]=loadgrid('g2ssubgom');
+%
+%
+%plot boundary
+%set window size and axis type
+%plot bathymetry
+%
+% JF
+subplot(3,2,1),plotbnd(x,y,bnd);
+axis('equal');
+set(gca,'XLim',[0.0 500000]);
+set(gca,'YLim',[-200000 150000]);
+set(gca,'Box','on');
+set(gca,'XTick',[]);
+set(gca,'YTick',[]);
+set(gca,'visible','off');
+[gridname,ndrog,ndts,tsec,pth]=read_pth('JF/DR56',4,'JF')
+cval=[60 100 200];
+lcontour2(ele,x,y,z,cval);
+%
+% MA
+subplot(3,2,2),plotbnd(x,y,bnd);
+axis('equal');
+set(gca,'XLim',[0.0 500000]);
+set(gca,'YLim',[-200000 150000]);
+set(gca,'Box','on');
+set(gca,'XTick',[]);
+set(gca,'YTick',[]);
+set(gca,'visible','off');
+[gridname,ndrog,ndts,tsec,pth]=read_pth('MA/DR56',4,'MA')
+cval=[60 100 200];
+lcontour2(ele,x,y,z,cval);
+%
+% MJ
+subplot(3,2,3),plotbnd(x,y,bnd);
+axis('equal');
+set(gca,'XLim',[0.0 500000]);
+set(gca,'YLim',[-200000 150000]);
+set(gca,'Box','on');
+set(gca,'XTick',[]);
+set(gca,'YTick',[]);
+set(gca,'visible','off');
+[gridname,ndrog,ndts,tsec,pth]=read_pth('MJ/DR56',4,'MJ')
+cval=[60 100 200];
+lcontour2(ele,x,y,z,cval);
+%
+% JA
+subplot(3,2,4),plotbnd(x,y,bnd);
+axis('equal');
+set(gca,'XLim',[0.0 500000]);
+set(gca,'YLim',[-200000 150000]);
+set(gca,'Box','on');
+set(gca,'XTick',[]);
+set(gca,'YTick',[]);
+set(gca,'visible','off');
+[gridname,ndrog,ndts,tsec,pth]=read_pth('JA/DR56',4,'JA')
+cval=[60 100 200];
+lcontour2(ele,x,y,z,cval);
+%
+% SO
+subplot(3,2,5),plotbnd(x,y,bnd);
+axis('equal');
+set(gca,'XLim',[0.0 500000]);
+set(gca,'YLim',[-200000 150000]);
+set(gca,'Box','on');
+set(gca,'XTick',[]);
+set(gca,'YTick',[]);
+set(gca,'visible','off');
+[gridname,ndrog,ndts,tsec,pth]=read_pth('SO/DR56',4,'SO')
+cval=[60 100 200];
+lcontour2(ele,x,y,z,cval);
+%
+% ND
+subplot(3,2,6),plotbnd(x,y,bnd);
+axis('equal');
+set(gca,'XLim',[0.0 500000]);
+set(gca,'YLim',[-200000 150000]);
+set(gca,'Box','on');
+set(gca,'XTick',[]);
+set(gca,'YTick',[]);
+set(gca,'visible','off');
+[gridname,ndrog,ndts,tsec,pth]=read_pth('ND/DR56',4,'ND')
+cval=[60 100 200];
+lcontour2(ele,x,y,z,cval);
+
+
+%
+% Print to file
+orient tall
+print -deps paths.eps
+
+
+%
+%Draw vectors as arrows - the 1 is the scale, so the vector scale that you
+%     put in with a mouse click will be 100cm/s.  If you want to increase the
+%     size of your vectors then put in a smaller scale size( so 0.5 scale will give 
+%     a representative scale length of 50 cm/s.  
+hv=vecplot2(x,y,data(:,2),data(:,3),0.4,'cm/s');
+end

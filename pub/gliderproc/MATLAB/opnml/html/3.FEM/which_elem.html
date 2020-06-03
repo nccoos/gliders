@@ -1,0 +1,55 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>which_elem</H1>
+<H2>(./FEM/which_elem.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>j=which_elem(fem_grid_struct,xylist)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ WHICH_ELEM determine bounding finite element in given domain
+    WHICH_ELEM finds the element number for the
+    current mouse position.  WHICH_ELEM prompts
+    the user to click on the current axes and returns
+    the element for the &quot;click-on&quot; position, or NaN
+    if the click is outside the domain.
+
+    Alternatively, a list of horizontal points can
+    be passed in and a list of element numbers, one for
+    each input point will be returned.
+
+    In determining which element has been selected,
+    WHICH_ELEM needs elemental areas and shape functions.
+    The routines <A HREF = "../3.FEM/belint.html">BELINT</A> and <A HREF = "../3.FEM/el_areas.html">EL_AREAS</A> compute these arrays
+    and add them to a previously created <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>.
+    These two functions MUST be run before WHICH_ELEM will
+    run.
+    <A HREF = "../3.FEM/belint.html">BELINT</A> is run as:
+      &gt;&gt; new_struct=<A HREF = "../3.FEM/belint.html">belint</A>(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>); 
+    <A HREF = "../3.FEM/el_areas.html">EL_AREAS</A> is run as:
+      &gt;&gt; [new_struct,ineg]=<A HREF = "../3.FEM/el_areas.html">el_areas</A>(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>); 
+
+  INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> - (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)     
+          xylist          - points to find elements for [n x 2 double] 
+           
+ OUTPUT : an element number(s)
+ 
+   CALL : &gt;&gt; j=which_elem(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>)   for interactive
+    or
+          &gt;&gt; j=which_elem(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,xylist)        
+
+ Written by : Brian O. Blanton 
+ Summer 1997
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+<LI><A HREF = "../3.FEM/is_valid_struct2.html">is_valid_struct2</A>./FEM/is_valid_struct2.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

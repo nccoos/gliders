@@ -1,0 +1,47 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./basics]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>gen_drog_line</H1>
+<H2>(./basics/gen_drog_line.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>outmat=gen_drog_line(nd,z,end_points)</pre>
+<HR><H3>Help text</H3>
+<pre>
+GEN_DROG_LINE Mouse-driven drogue input coordinate generator
+   GEN_DROG_LINE - Mouse-driven drogue input coordinate generator 
+                   prompts the user to draw a line on the current 
+                   axes and returns an array of coordinates suitable 
+                   for a drogue initialization file.
+
+  INPUT:  nd     - number of drogues along the line.
+          z      - the depth to assign to the horizontal drogue
+                   locations.  
+          end_points - optional 4x1 vector defining the end points of
+                       the sampling lines.  
+                       The 4 values are [X1 Y1 X2 Y2], and if defined
+                       they take precedence over the mouse-driven facility.
+
+ OUTPUT:  outmat - if z is supplied as input, outmat is a (nx*ny*length(z)) by 3 
+                   array of 3-D starting locations
+                   if z is NOT supplied as input, outmat is a (nx*ny) by 2
+                   array of 2-D starting locations
+
+ Call as: outmat=gen_drog_line(nd)
+      OR: outmat=gen_drog_line(nd,z)
+      OR: outmat=gen_drog_line(nd,z,end_points)
+
+ Written by :Brian O. Blanton
+ December 1998
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../6.basics/gen_drog_grid.html">gen_drog_grid</A>  ./basics/gen_drog_grid.m</LI>
+<LI><A HREF = "../6.basics/isint.html">isint</A>          ./basics/isint.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

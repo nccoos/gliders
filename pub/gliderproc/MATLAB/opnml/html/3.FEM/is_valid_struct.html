@@ -1,0 +1,66 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>is_valid_struct</H1>
+<H2>(./FEM/is_valid_struct.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>errflag=is_valid_struct(fem_grid_struct)</pre>
+<HR><H3>Help text</H3>
+<pre>
+ IS_VALID_STRUCT - Determine if the input structure is &quot;valid&quot;
+
+     IS_VALID_STRUCT determines whether or not the input
+     structure is valid or invalid according to the 
+     description of <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>.  A valid <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>
+     contains (atleast) the following (NOT EMPTY) fields:
+
+       .name - the domain name of the FEM grid
+       .e    - node connectivity list (linear, triangular) [ne x 3 double]
+       .x    - x-horizontal node coordinates               [nn x 1 double]
+       .y    - y-horizontal node coordinates               [nn x 1 double]
+       .z    - bathymetry list                             [nn x 1 double]
+       .bnd  - boundary segment list                       [nb x 2 double]
+
+     As a (not very rigorous) check, the maximum node number in the 
+     element and boundary lists must not exceed the length of the node
+     list, and the node list ane bathymetry lists must be the same length.
+
+     There is no way to guarantee that the data in the fields actually
+     all came from the same domain (mesh).  However, if the 
+     <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A> was output from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A> or LOADG, then it is guaranteed.
+
+ CALL: errflag=is_valid_struct(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>)
+       
+ Written by : Brian O. Blanton
+ Summer 1997
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function is called by
+<pre><UL>
+<LI><A HREF = "../3.FEM/basis2d.html">basis2d</A>        ./FEM/basis2d.m</LI>
+<LI><A HREF = "../3.FEM/belint.html">belint</A>         ./FEM/belint.m</LI>
+<LI><A HREF = "../3.FEM/breakstruct.html">breakstruct</A>    ./FEM/breakstruct.m</LI>
+<LI><A HREF = "../3.FEM/colormesh2d.html">colormesh2d</A>    ./FEM/colormesh2d.m</LI>
+<LI><A HREF = "../3.FEM/colormesh3d.html">colormesh3d</A>    ./FEM/colormesh3d.m</LI>
+<LI><A HREF = "../3.FEM/curl.html">curl</A>           ./FEM/curl.m</LI>
+<LI><A HREF = "../3.FEM/drawelems.html">drawelems</A>      ./FEM/drawelems.m</LI>
+<LI><A HREF = "../3.FEM/drawelems3d.html">drawelems3d</A>    ./FEM/drawelems3d.m</LI>
+<LI><A HREF = "../3.FEM/el_areas.html">el_areas</A>       ./FEM/el_areas.m</LI>
+<LI><A HREF = "../3.FEM/findelem.html">findelem</A>       ./FEM/findelem.m</LI>
+<LI><A HREF = "../3.FEM/interp_scalar.html">interp_scalar</A>  ./FEM/interp_scalar.m</LI>
+<LI><A HREF = "../3.FEM/lcontour.html">lcontour</A>       ./FEM/lcontour.m</LI>
+<LI><A HREF = "../3.FEM/numbnd.html">numbnd</A>         ./FEM/numbnd.m</LI>
+<LI><A HREF = "../3.FEM/numelems.html">numelems</A>       ./FEM/numelems.m</LI>
+<LI><A HREF = "../3.FEM/numnodes.html">numnodes</A>       ./FEM/numnodes.m</LI>
+<LI><A HREF = "../3.FEM/plotbnd.html">plotbnd</A>        ./FEM/plotbnd.m</LI>
+<LI><A HREF = "../3.FEM/sample_field_2d.html">sample_field_2d</A>./FEM/sample_field_2d.m</LI>
+<LI><A HREF = "../3.FEM/showelem.html">showelem</A>       ./FEM/showelem.m</LI>
+<LI><A HREF = "../3.FEM/vecplot.html">vecplot</A>        ./FEM/vecplot.m</LI>
+<LI><A HREF = "../3.FEM/which_elem.html">which_elem</A>     ./FEM/which_elem.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

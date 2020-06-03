@@ -1,0 +1,192 @@
+VIZICQ4_1.2 Visualization
+
+Introduction
+   This webpage describes the operation of VIZICQ4, Version 1.2.
+   VIZICQ4 is a GUI-based MATLAB tool that accompanies the
+   OPNML/MATLAB toolbox for the visualization of .icq4 files as
+   output from the Quoddy4 series of FEM shallow water models.
+   Currently, VIZICQ4 supports the horizontal slicing and vertical 
+   slicing (transects) of .icq4 files.  Future versions will support 
+   2-D plotting, .pth file analysis, and surface rendering (MATLAB5.3).  
+   The terms "transect" and "vertical slice" are synonomous.
+
+Purpose
+   The purpose of VIZICQ4 is to provide an easy method for examining the
+   field contents of Quoddy4 .icq4 files.  It is meant as a basic
+   analysis tool and not as a final plotting package for
+   publication-quality figures.  The core of VIZICQ4 is the 
+   OPNML and FCAST toolbox routines.
+
+Requirements:
+   MATLAB  version 5.2.0+
+   OPNML toolbox (retrieved any time after 1 November, 1998) 
+   FCAST toolbox (version 1.2)
+   
+MEX file compilation:  One of the computational routines of VIZICQ4_1.2 
+   is external to MATLAB,  It is called map_scalar_mex5.c, and must
+   be compiled before VIZICQ4_1.2 will run.  Once the VIZICQ4 tarfile
+   is untarred (tar xvf VIZIVQ4_1.2.tar), start MATLAB and cd (within
+   MATLAB) to the VIZICQ4_1.2 directory.  Than, at the MATLAB prompt (>>),
+   type:
+      >> mex map_scalar_mex5.c
+   This compiles the architecture-dependent executable, which will
+   be called map_scalar_mex5.mex<arch>.  This file MUST reside in the 
+   VIZICQ4_1.2 directory; do not move it out.
+   
+Operation:
+ * GUI-Layout - VIZICQ4 consists of a main, large figure and several
+   smaller figures, many buttons and menus.  Most of them are self-
+   explanatory.  The main window contains two axes, only one of 
+   which is visible at a time.  The first, titled "Grid Axes", 
+   is the axes that contains the FEM element plot used for 
+   specifying the transect end-points.  The second axes becomes
+   visible after a transect is computed, and is a 3-D, rotatable
+   rendering of the FEM mesh and the contents of the slices.
+   The visible axes can always be toggled with the "Toggle Axes" 
+   button in the top right of the main figure.
+
+   The top of the main window contains some menus
+   (File, Options, Clear, colormap).  "Options" contains axis 
+   adjustments, etc.  "Clear" allows for the deletion of objects
+   drawn on the "Slice Axes", like all vectors, all slices, etc...
+
+   The bottom of the figure contains an Info: line, and Error: line
+   and an EXIT button.  VIZICQ4 tries to be as informative as possible
+   when an error occurs, and displays messages to recoverable problems
+   (for example, "Domain Name not set" if the grid name entered could not
+   be located) in these lines.
+
+ * Loading grid and .icq4 files - The computation of slices and 
+   volumes requires a FEM mesh in standard file formats.  Enter 
+   a FEM domain name in the top left of the figure, with either
+   a relative or absolute path (or none at all if MATLAB was started
+   in a directory containing a mesh.  More likely, MATLAB was started
+   in another directory, like a data directory contains several .icq4 
+   files.)  Directory navigation isn't possible yet.
+ 
+   The name of a directory containing an .icq4 file(s) can be entered
+   at "Forecast Dir:".  Press return.  If there are .icq4 files
+   available, a browsable menu will pop up to the right.  Double-click
+   on the .icq4 filename to load.  If VIZICQ4 was started in the
+   directory containing .icq4 files, just enter the name of the .icq4
+   file, including the .icq4 file extension, in the "Icq4 Name:" space
+   on the top right.
+
+ * Selecting .icq4 fields - Once an .icq4 file is loaded, select a
+   field to slice from the list of pushbuttons along the right side.
+   Selecting a 2-D field (HMID,UMID,VMID,HOLD,UOLD,VOLD) will result
+   in a warning when slice computation occurs.  These will be useable
+   in later versions.  Also, ZMID and ZOLD cannot be visualized,
+   although they are used in computations.  
+
+ * Contouring the bathymetry - Enter the values of the bathymetry
+   to contour in the "Z-Contours:" space.  The default is to 
+   compute contours over the range of the bathymetry, at 5 
+   values equally spaced between the min and max depths.
+   "linspace(zmin,zmax,7)", the default, gives the following
+   for the bank150 mesh;  
+      -150. -128.3 -106.7  -85.  -63.3  -41.7  -20.
+   Note that the first and last values are not used.  
+   Any string can be entered that evaluates in MATLAB to a 
+   vector.  For example, to set contour values of -120 -90
+   -60 -30, enter [-120 -90 -60 -30] or [-120:30:-30].  
+   Contours can be labled (press the LabC button) or deleted
+   (press the DelC button).
+
+ * Slices and Volumes - The "Slice" and "Volume" buttons in the 
+   top right of the main figure provide slicing and volume
+   rendering facilities (see below).  Each has the following
+   in common.  At the bottom of each popup, the buttons are
+   the same and provide a way to change the surface shading, 
+   delete objects, turn on 3D rotation, and add a colorbar.  
+
+ * Computing Slices - The "Slice"  button in the upper right pops a 
+   "Slice parameter figure" that allows the entering of vertical and 
+   horizontal parameters.   In both cases, the slice is computed
+   by pressing the "Make Slice" button once the appropriate parametrs
+   are specified.
+
+   Horizontal - At this time, only the depth level can be specified.  
+   Make sure that a "NEGATIVE" depth is entered; recall that the
+   vertical mesh is computed as POSITIVE upward, with the flat free
+   surface at z==0.  The "vectors" button can be pushed to overlay 
+   the velocity at the specified level.  The vectors plotted include
+   the vertical component, exagerated by the horizontal/vertical
+   aspect ratio.  At this time, scaling of the vectors is not
+   available.  The maximum vector length is displayed in the Info
+   line.
+
+   Vertical - Transects are specified in 2 ways. 1) Enter the
+   end-points explicitly in the (X1,Y1,X2,Y2) fields.  2) 
+   click on the "X-Slice", "Y-Slice", or "Arbitrary Slice" buttons.
+   In this case, VIZICQ4 prompts for the user to use the mouse 
+   to click on the location of one end-point (in the case of 
+   "X-Slice"or "Y-Slice") or both end-points in the case of
+   "Arbitrary Slice".
+
+ * Computing Volumes - The Volumes facility in VIZICQ4 is based
+   on interpolating the FEM 3D grid onto a finite-difference,
+   rectangularly spaced grid.  This is not yet fully functional;
+   we are awaiting the wide-spread availability of MATLAB5.3, which 
+   supports volume visualization facilities.
+
+   Current Status:
+   The "Volume" button in the upper right of the figure pops up a 
+   figure that allows the specification for drawing surfaces of the 
+   .icq4 fields.   Specify the (x,y,z) discretization levels on the 
+   left.  Press the "COMP BASIS" button to compute the 3D
+   interpolation functions.  Then, press the "Map Scalar" button
+   to interpolate the selected scalar .icq4 field to the FD grid.
+   The "Integer Slice Locations" correspond to the integer locations
+   in the FD grid to make a slice.  For example, the default 
+   x-dicrestization level is 50; the default integer slice
+   location in the x-coordinate is 25.  This means that the "25th"
+   in the y-z plane (at FD grid x0location 25) will be sliced. 
+   If the "Ix:" locations are changed to 1:5:50, then 
+   the y-z slices will be made at the first, 6th, ... x-grid
+   locations.  The "GO!!" buttons apply only to the coordinate
+   plane to the left of the button.  The "GO ALL!!" button
+   computes and displays all 3 coordinate slices. 
+
+   The "Select Region" (right) side of the Volume Popup allows a 
+   smaller region to be discretized or refined.   The default region
+   is the horizontal extent of the FEM domain.  The Rotation
+   facility (Rot CCW/CW buttons) is flawed and currently
+   unavailable.
+
+   If the Discretization level is changed after the basis is computed,
+   the "COMP BASIS" button MUST BE PUSHED AGAIN.  VIZICQ4 does
+   not properly detect the discretizaion change to alert the user
+   that the basis needs to be recomputed.  This is a deficiency that 
+   will be corrected in future versions. 
+
+ * Printing - Use the File->Printing... menu option to prepare the 
+   "Slice Axes" for printing, either to file or printer.  Make sure
+   the "Slice" axes is the current axes by clicking on it, or by
+   toggling the axes if is it not visible.
+
+ * Error Messages - Most non-terminal errors are reported to the Error 
+   Line:.  Messages to the MATLAB command window (where the >> prompt
+   exists) like "Command hole in switch in vizicq4_guts" are normal.
+   Error messages reported to the command window that look similar to:
+   "Error in ==> /home/fcast/OPNML_MATLAB/VIZICQ4_1.2/vizicq4_guts.m"
+   signify that (at the very least) VIZICQ4 has become lost,
+   terminally.  It is best to EXIT and restart.
+
+ * NOTES: 
+      +) The colorbar drawn by pushing the colorbar button in the 
+         Volume and Slice windows is NOT automatically redrawn
+         when a new slice is added to the Slice Axes.  The user
+         MUST push the button to refresh the colorbar.
+      +) VIZICQ4 does not knoiw if the discretization level has 
+         changed once the 3D basis is computed.  The user MUST
+         push the COMP BASIS button if the discretization level
+         OR region changes.
+      +) The HELP buttons don't work.  This text will become the 
+         help text in the next version.
+
+ * Deficiencies - Plenty.  For starters,...
+      +) Vector scaling not yet available.
+      +) 2-D fields not supported.
+
+ * BUGS - None.

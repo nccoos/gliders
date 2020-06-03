@@ -1,0 +1,42 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FDCONT]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>fdvector</H1>
+<H2>(./FDCONT/fdvector.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>h=fdvector(bfd,ufe,vfe,sc,stride,sclab,scale_xor,scale_yor)</pre>
+<HR><H3>Help text</H3>
+<pre>
+FDVECTOR plot vectors from a bfd sampling.
+   FDVECTOR plots vectors from a FEM domain that has been
+   sampled on a finite difference grid.  The FD grid
+   is contained in a .bfd file (See <A HREF = "../2.FDCONT/genbfd.html">GENBFD</A>) and FDVECTOR
+   handles the interpolatopn of FE vector data onto
+   the FD grid.  (VECPLOT2 does the actual plotting.)
+
+   Input:   bdf    - bfd array (all 10 columns)
+            u      - east vector amplitude
+            v      - west vector amplitude
+            sc     - vector scaler; (optional; def = 1.)
+            stride - stride over nodes
+            sclab  - label for vector scale; (optional; def = 'cm/s')
+            scale_xor,scale_yor - vector scale origin (optional)
+
+   The stride argument is used to plot every other 
+   vector (stride=2, e.g.).
+
+   Including the scale_xor,scale_yor prevents the mouse-driven 
+   specification of the vector scale placement.
+ 
+   Output: h - vector of handles to objects drawn.
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../2.FDCONT/fe2fd.html">fe2fd</A>          ./FDCONT/fe2fd.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

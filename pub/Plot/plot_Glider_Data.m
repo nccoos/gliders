@@ -58,8 +58,8 @@ switch dataset_Code
             T = target_Struct.temp(subset);
 %             figure; plot(time,T,'bo-'); datetick('x',6,'keeplimits'); title('Temperature');
 %             figure; plot(time,-P,'bo-'); datetick('x',6,'keeplimits'); title('Depth');
-            ccplot_Glider_Data_t(time,P,T,'Temperature',platform_Label);
-            ccplot3_Glider_Data(gpsLon, gpsLat,P,T,[min(T) max(T)],'Temperature', platform_Label);
+            ccplot_Glider_Data_t(time,P,T,target_Struct.tempBounds,'Temperature',platform_Label);
+            ccplot3_Glider_Data(gpsLon, gpsLat,P,T,target_Struct.tempBounds,'Temperature', platform_Label);
         catch err
             throw(err)
         end
@@ -67,36 +67,51 @@ switch dataset_Code
         try
             S = target_Struct.salinCorrected(subset);
 %             figure; plot(time,S,'bo-'); datetick('x',6,'keeplimits'); title('Salinity (Corrected)');
-            ccplot_Glider_Data_t(time,P,S,'Salinity (Corrected)',platform_Label);
-            ccplot3_Glider_Data(gpsLon, gpsLat,P,S,[min(S) max(S)],'Salinity (Corrected)', platform_Label);
+            ccplot_Glider_Data_t(time,P,S,target_Struct.salinBounds,'Salinity (Corrected)',platform_Label);
+            ccplot3_Glider_Data(gpsLon, gpsLat,P,S,target_Struct.salinBounds,'Salinity (Corrected)', platform_Label);
         catch err
             throw(err)
         end
-%         ccplot_Glider_Data_t(time,P,abs(target_Struct.x.avgDepthRate(subset)),'avgDepthRate',platform_Label);
-%         ccplot3_Glider_Data(gpsLon, gpsLat,P,abs(target_Struct.x.avgDepthRate(subset)),[min(abs(x.avgDepthRate(subset))) max(abs(x.avgDepthRate(subset)))],'avgDepthRate', platform_Label);
-%        % T-S plots
-%         figure; plot(S,T,'.');
-%         ylabel('T(^oC)');xlabel('S')
-%         title('T-S Diagram (Corrected)');  
-%         figure;
-%         plot(target_Struct.salin(subset),target_Struct.temp(subset),'r.');
-%         ylabel('T(^oC)');xlabel('S')
-%         title('T-S Diagram (Uncorrected)');  
-        figure; plot(S,T,'.');
-        ylabel('T(^oC)');xlabel('S')
-        title('T-S Diagram (Corrected)');  
-        figure;
-        plot(target_Struct.salin(subset),target_Struct.temp(subset),'r.');
-        ylabel('T(^oC)');xlabel('S')
-        title('T-S Diagram (Uncorrected)');            
-        % For density
         try
-            density = target_Struct.densCorrected(subset); 
-            figure; plot(time,density,'bo-'); datetick('x',6,'keeplimits'); title('Density (Corrected)');
-            ccplot_Glider_Data_t(time,P,density,'Density (Corrected)',platform_Label); 
-            ccplot3_Glider_Data(gpsLon, gpsLat,P,density,[nanmin(density) nanmax(density)],'Density (Corrected)', platform_Label);
+            S = target_Struct.salinCorrected(subset);
+%             figure; plot(time,S,'bo-'); datetick('x',6,'keeplimits'); title('Salinity (Corrected)');
+            ccplot_Glider_Data_t(time,P,S,target_Struct.salinBounds,'Salinity (Corrected)',platform_Label);
+            ccplot3_Glider_Data(gpsLon, gpsLat,P,S,target_Struct.salinBounds,'Salinity (Corrected)', platform_Label);
         catch err
+            throw(err)
         end
+        try
+            dens = target_Struct.densCorrected(subset);
+            ccplot_Glider_Data_t(time,P,dens,target_Struct.densBounds,'Density (Corrected)',platform_Label);
+            ccplot3_Glider_Data(gpsLon, gpsLat,P,dens,target_Struct.densBounds,'Density (Corrected)', platform_Label);
+        catch err
+            throw(err)
+        end
+%      
+        slim = [target_Struct.salinBounds(1) - range(target_Struct.salinBounds)*0.1 ...
+            target_Struct.salinBounds(2) + range(target_Struct.salinBounds)*0.1];
+        tlim = [target_Struct.tempBounds(1) - range(target_Struct.tempBounds)*0.1 ...
+            target_Struct.tempBounds(2) + range(target_Struct.tempBounds)*0.1];
+        figure; 
+        tsdiagrm(slim,tlim,[0],[16:1:32])
+        hold on
+        h1 = plot(target_Struct.salin(subset),target_Struct.temp(subset),'.');
+        h2 = plot(S,T,'r.');
+        legend([h1,h2],{'Uncorrected','Corrected'})
+        ylabel('T(^oC)');xlabel('S')
+        title('T-S Diagram');  
+            
+        
+        figure;
+        h = histogram2(S,T,'BinWidth',[0.1,0.02],'facecolor','flat')
+        colormap jet;
+        colorbar;
+        xlabel('S');
+        ylabel('T');
+        xlim(slim)
+        ylim(tlim)
+        title('Histogram of corrected T-S')
+
     case 'ECO'
         gpsLat = target_Struct.gpsLat(subset);
         gpsLon = target_Struct.gpsLon(subset);
@@ -106,10 +121,10 @@ switch dataset_Code
             figure; plot(time,chlor,'bo-'); datetick('x',6,'keeplimits'); title('Chlorophyll');
             figure; plot(time,-P,'bo-'); datetick('x',6,'keeplimits'); title('Depth');
             
-            chlor_Clean = target_Struct.chlor_Clean(subset); 
+            chlor_Clean = target_Struct.chlor(subset); 
             figure; plot(time,log10(chlor_Clean),'bo-'); datetick('x',6,'keeplimits'); title('Log of Chlorophyll, Clean');
 
-            ccplot_Glider_Data_t(time,P,log10(chlor_Clean),'Log of Chlorophyll, Clean',platform_Label);
+            ccplot_Glider_Data_t(time,P,log10(chlor_Clean),[min(log10(chlor_Clean)) max(log10(chlor_Clean))],'Log of Chlorophyll, Clean',platform_Label);
             ccplot3_Glider_Data(gpsLon, gpsLat,P,log10(chlor_Clean),[min(log10(chlor_Clean)) max(log10(chlor_Clean))],'Log of Chlorophyll, Clean', platform_Label);
             hist_Glider_Data(log10(chlor_Clean),'Log of Chlorophyll, Clean', platform_Label)
 
@@ -129,7 +144,7 @@ switch dataset_Code
             gpsLat_Clean = gpsLat(idx_Clean);
             figure; plot(time_Clean,log10(scatter_Clean),'bo-'); datetick('x',6,'keeplimits'); title('Log of Scatter, Clean');
 
-            ccplot_Glider_Data_t(time_Clean,P_Clean,log10(scatter_Clean),'Log of Scatter, Clean',platform_Label);
+            ccplot_Glider_Data_t(time_Clean,P_Clean,log10(scatter_Clean),[min(log10(scatter_Clean)) max(log10(scatter_Clean))],'Log of Scatter, Clean',platform_Label);
             ccplot3_Glider_Data(gpsLon_Clean, gpsLat_Clean,P_Clean,log10(scatter_Clean),[min(log10(scatter_Clean)) max(log10(scatter_Clean))],'Log of Scatter, Clean', platform_Label);
             hist_Glider_Data(log10(scatter_Clean),'Log of Scatter, Clean', platform_Label)
         catch err
@@ -148,7 +163,7 @@ switch dataset_Code
             gpsLat_Clean = gpsLat(idx_Clean);
             figure; plot(time_Clean,log10(cdom_Clean),'bo-'); datetick('x',6,'keeplimits'); title('Log of CDOM, Clean');
 
-            ccplot_Glider_Data_t(time_Clean,P_Clean,log10(cdom_Clean),'Log of CDOM, Clean',platform_Label);
+            ccplot_Glider_Data_t(time_Clean,P_Clean,log10(cdom_Clean),[min(log10(cdom_Clean)) max(log10(cdom_Clean))],'Log of CDOM, Clean',platform_Label);
             ccplot3_Glider_Data(gpsLon_Clean, gpsLat_Clean,P_Clean,log10(cdom_Clean),[min(log10(cdom_Clean)) max(log10(cdom_Clean))],'Log of CDOM, Clean', platform_Label);
             hist_Glider_Data(log10(cdom_Clean),'Log of CDOM, Clean', platform_Label)
         catch err
@@ -196,11 +211,11 @@ switch dataset_Code
 %             figure
 %             plot(target_struct.depthi(subset),target_Struct.o2_tspcorr(subset));
 %             title('depth vs tepi')
-            ccplot_Glider_Data_t(time,P,target_Struct.o2_tspcorr(subset),'o2 tsp(Corr)',platform_Label);
-            ccplot_Glider_Data_t(time,P,target_Struct.o2_sat(subset),'o2 sat(Corr)',platform_Label);
+%             ccplot_Glider_Data_t(time,P,target_Struct.o2_tspcorr(subset),'o2 tsp(Corr)',platform_Label);
+%             ccplot_Glider_Data_t(time,P,target_Struct.o2_sat(subset),[min(o2_sat) max(o2_sat)],'o2 sat(Corr)',platform_Label);
 %             ccplot_Glider_Data_t(time,P,o2_sat,'o2 sat (Corr)',platform_Label);
 %             ccplot3_Glider_Data(gpsLon, gpsLat,P,o2_sat,[min(o2_sat) max(o2_sat)],'o2 sat (Corr)', platform_Label);
-            ccplot_Glider_Data_t(time,P,target_Struct.oxyw_oxygen(subset),'UnCorr)',platform_Label);
+%             ccplot_Glider_Data_t(time,P,target_Struct.oxyw_oxygen(subset),'UnCorr)',platform_Label);
 %             hist_Glider_Data(o2_sat,'o2 sat (Corr)', platform_Label)
             figure
             Z = target_Struct.o2_tspcorr;
@@ -238,13 +253,13 @@ end
 %}
 
 
-function ccplot_Glider_Data_t(time,P,Z,var_Label, platform_Label)
+function ccplot_Glider_Data_t(time,P,Z,bounds,var_Label, platform_Label)
 length(~isnan(Z))
 display_String = sprintf('%s %s %s %s\n','Plotting',var_Label,'from',platform_Label);
 disp(display_String);
 figure; 
 colormap jet
-ccplot(time,P,Z,[nanmin(Z) nanmax(Z)],'.',10);     
+ccplot(time,P,Z,bounds,'.',10);     
 colorbar;
 colormap jet
 xlabel('Time');  

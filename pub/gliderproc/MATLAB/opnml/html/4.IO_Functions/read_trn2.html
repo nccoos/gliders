@@ -1,0 +1,50 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_trn2</H1>
+<H2>(./IO_Functions/read_trn2.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>data=read_trn(trnname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+
+ <A HREF = "../4.IO_Functions/read_trn.html">READ_TRN</A> read a .trn file as output from the OPNML transect code
+
+ data=<A HREF = "../4.IO_Functions/read_trn.html">read_trn</A>(trnname);         
+
+          If trnname is omitted, <A HREF = "../4.IO_Functions/read_trn.html">READ_TRN</A> enables a file browser
+          with which the user can specify the .trn file.
+
+          Otherwise, <A HREF = "../4.IO_Functions/read_trn.html">READ_TRN</A> takes a input the filename of the 
+          transect data file, including the .trn suffix.
+
+          The columns of the returned data part are:
+             
+              Dist.    Depths    Normal   Parallel   Vert.
+              along      at       Vel.      Vel.     Vel.
+              trans   Stations
+               (X)       (Y)      (Vn)      (Vp)      (W)
+
+          Read the &quot;man&quot; page for TRANSECT (type &quot;man transect&quot; at a UNIX
+          prompt) for the format specifics of a .trn file.
+
+          In order to plot the results of a transect, an element list 
+          corresponding to the number of horizontal and vertical
+          stations must be generated.  This list is output by TRANSECT,
+          either as &quot;trans.ele&quot; or &quot;ftn99&quot;.  Alternatively, this list can 
+          be generated within MATLAB
+          with the OPNML/MATLAB routine ELGEN.  The element list can also
+          be generated with the OPNML binary code &quot;elgen&quot;.  
+
+          Make sure a semi-colon is used at the end of the command; 
+          otherwise <A HREF = "../4.IO_Functions/read_trn.html">READ_TRN</A> will return the data part to the screen.
+
+ Call as: data=<A HREF = "../4.IO_Functions/read_trn.html">read_trn</A>(trnname);
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

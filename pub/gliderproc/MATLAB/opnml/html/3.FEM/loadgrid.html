@@ -1,0 +1,75 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>loadgrid</H1>
+<H2>(./FEM/loadgrid.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>fem_grid_struct=loadgrid(gridname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+LOADGRID load principle gridfiles for a given FEM domain
+ LOADGRID loads grid files for a given FEM domain and returns
+ a <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> to the local workspace.  The returned
+ structure contains atleast the minimum grid components
+ for boundary plotting, contouring, etc.  Additionally,
+ if land description files exist (.lnd, .lbe), the land
+ description arrays are attached to the structure as well.
+
+  Input: gridname - name of domain to load grid files
+
+ Output: LOADGRID returns a <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> containing (atleast)
+         the following fields:
+         1)  .name   name of FEM domain
+         2)  .e      node connectivity array (cols 2-4 of .ele file )
+         3)  .x      x-horizontal node list  (col 2 of .nod file )
+         4)  .y      y-horizontal node list  (col 3 of .nod file )
+         5)  .z      bathymetry list	      (col 2 of .bat) file
+         6)  .bnd    boundary node/pair list (.bnd file )
+
+ LOADGRID with no input gridname checks to see if the global
+ variable DOMAIN has been set.  If so, LOADGRID uses this
+ name to load files for.  If DOMAIN does NOT exist or is
+ empty, the input gridname must be specified.
+
+ If the boundary list (.bnd) exists locally, LOADGRID
+ attempts to load the remaining files locally.  If the .bnd
+ file does NOT exist locally, LOADGRID searches the
+ GRIDS and GRIDDIRS global variables for the grid data.
+
+ If any of the principle grids files does not exist, LOADGRID
+ displays the appropriate message and exits, returning a
+ partially filled <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> WHICH IS INVALID.  The
+ returned structure CANNOT be passed to any subsequent
+ OPNML/MATLAB function expecting a valid <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>.
+ NOTE THIS EXCEPTION: the function <A HREF = "../3.FEM/gridinfo.html">GRIDINFO</A> will take any
+ <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> and describe the field contents.
+
+ EXAMPLE CALL:
+ &gt;&gt; mcbo=loadgrid('mcbo')
+
+ This returns a <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> into the local workspace
+ named &quot;mcbo&quot; which contains the following minimum fields:
+
+    mcbo =
+	 name: 'mcbo'
+	    e: [727x3 double]
+	    x: [444x1 double]
+	    y: [444x1 double]
+	    z: [444x1 double]
+	  bnd: [161x2 double]
+
+ Written  by : Brian O. Blanton
+ Summer 1997
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/detbndy.html">detbndy</A>        ./FEM/detbndy.m</LI>
+<LI><A HREF = "../3.FEM/el_areas.html">el_areas</A>       ./FEM/el_areas.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

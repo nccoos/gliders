@@ -1,0 +1,36 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>drawvec</H1>
+<H2>(./FEM/drawvec.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>hp=drawvec(xo,yo,um,vm,atheta,lcolor)</pre>
+<HR><H3>Help text</H3>
+<pre>
+
+ DRAWVEC draw arrows for vectors
+
+ DRAWVEC drawvec(xo,yo,um,vm,atheta,lcolor) is a routine to 
+         draw vectors. This is a fairly low-level routine
+         in that in does no scaling to the vectors.  This function
+         is called primarily by <A HREF = "../3.FEM/vecplot.html">VECPLOT</A> and returns the handle
+         of the vector object drawn.
+
+ Inputs: xo,yo  - vector origins; arrow eminates from this point
+         um,vm  - vector magnitudes
+         atheta - arrow-head angle, in degrees
+         lcolor - linecolor , 'r' = red, etc.
+
+ Outputs: hp    - the handle to the vector object drawn
+
+ Call as:  hp=drawvec(xo,yo,um,vm,atheta,lcolor)
+
+ Written by: Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

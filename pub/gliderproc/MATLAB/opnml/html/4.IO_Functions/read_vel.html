@@ -1,0 +1,60 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_vel</H1>
+<H2>(./IO_Functions/read_vel.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data,nnv,freq,gridname]=read_vel(fname);</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_VEL read a FEM output file of .vel filetype.
+   READ_VEL is part of a suite of OPNML I/O functions  
+   to read specific filetypes pertaining to FEM model  
+   input and output.   These functions allow the user to
+   get these data files into MATLAB without copying the
+   files and removing the header info by hand.
+
+   READ_VEL reads the FEM filetype .vel, as detailed in
+   &quot;Data File Standards for the Gulf of Maine Project&quot;
+   from the Numerical Methods Laboratory at Dartmouth
+   College.  (This document is located in the OPNML
+   notebook under External Documents.)  There are eight
+   columns, the first of which is the node number.  The
+   remaining columns are floating point.  
+
+   Input :   If fname is omitted, READ_VEL enables a file browser
+             with which the user can specify the .vel file.
+
+             Otherwise, fname is the name of the .vel file, relative 
+             or absolute (fullpath), including the suffix '.vel'.
+             This input is a string so it must be enclosed in single 
+             quotes. The header lines are discarded.
+
+  Output :   The data part is returned in the variable data.  
+             There are eight columns, the first of which is the node 
+             number.  The remaining columns are floating point.
+             The number of vertical nodes is returned in nnv, and
+             the frequency is returned in freq. 
+
+             Call READ_VEL as:
+             &gt;&gt; [data,nnv,freq]=read_vel(fname);
+
+             If READ_VEL cannot locate the file, it exits, returning 
+             a -1 instead of the data matrix.
+
+   NOTES :   The .vel filetype contains 3-D data; i.e., complex-valued
+             velocity data at each vertical node per horizontal node.
+             The .vel file has phase in radians while the related .<A HREF = "../4.IO_Functions/v3c.html">v3c</A> 
+             format has phase in degrees.
+
+ Call as: [data,nnv,freq,gridname]=read_vel(fname);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

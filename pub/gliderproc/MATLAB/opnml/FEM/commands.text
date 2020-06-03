@@ -1,0 +1,63 @@
+b150=loadgrid('/globec/flagg/realtime/bank150');
+[a,b]=xy2ll(b150.x,b150.y);
+b150.x=b;
+b150.y=a;
+
+plotbnd(b150)
+drawelems(b150)
+lcontour(b150,'z',-[20 40 60 80 100])
+
+b150.z=-b150.z;
+
+[m,n,p]=size(X);
+
+figure
+h1=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,1),'linear');hold on
+h2=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,4),'linear');
+h3=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,7),'linear');
+h4=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,10),'linear');
+h5=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,13),'linear');
+h6=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,16),'linear');
+h7=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,19),'linear');
+h8=slice(X,Y,Z,SAL,X(:,:,1),Y(:,:,1),Z(:,:,22),'linear');
+set(gca,'Clim',[32 33])
+hp=colormesh3d(b150,b150.z)
+axis([min(X(:)) max(X(:)) min(Y(:)) max(Y(:)) -100 0])
+colormap(jet(64))
+colorbar
+rotate3d
+title('SALINITY','FontSize',20)
+xlabel('Long','FontSize',20);ylabel('Lat','FontSize',20)
+
+
+figure
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,1),'linear');hold on
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,3),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,5),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,7),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,9),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,11),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,13),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,15),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,17),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,19),'linear')
+slice(X,Y,Z,TEMP,X(:,:,1),Y(:,:,1),Z(:,:,21),'linear')
+hp=colormesh3d(b150,b150.z)
+axis([min(X(:)) max(X(:)) min(Y(:)) max(Y(:)) -100 0])
+colormap(jet(64))
+colorbar
+rotate3d
+title('TEMPERATURE','FontSize',20)
+xlabel('Long','FontSize',20);ylabel('Lat','FontSize',20)
+
+
+figure
+slice(X,Y,Z,TEMP,reshape(X(1,:,:),m,p),reshape(Y(1,:,:),m,p),reshape(Z(1,:,:),m,p));hold on
+slice(X,Y,Z,TEMP,reshape(X(1,:,:),m,p),reshape(Y(8,:,:),m,p),reshape(Z(1,:,:),m,p))
+slice(X,Y,Z,TEMP,reshape(X(1,:,:),m,p),reshape(Y(15,:,:),m,p),reshape(Z(1,:,:),m,p))
+slice(X,Y,Z,TEMP,reshape(X(1,:,:),m,p),reshape(Y(22,:,:),m,p),reshape(Z(1,:,:),m,p))
+slice(X,Y,Z,TEMP,reshape(X(1,:,:),m,p),reshape(Y(29,:,:),m,p),reshape(Z(1,:,:),m,p))
+slice(X,Y,Z,TEMP,reshape(X(1,:,:),m,p),reshape(Y(36,:,:),m,p),reshape(Z(1,:,:),m,p))
+slice(X,Y,Z,TEMP,reshape(X(1,:,:),m,p),reshape(Y(43,:,:),m,p),reshape(Z(1,:,:),m,p))
+title('TEMPERATURE','FontSize',20)
+xlabel('Long','FontSize',20);ylabel('Lat','FontSize',20)

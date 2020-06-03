@@ -193,49 +193,49 @@ end
 
 %% WHICH TIME BASE TO USE
 if timeBase_is_eco_time
-    save('timeBases.mat','ptime_ebd','eco_time');
-    % science time or eco time
-    display_String = sprintf('%s %s %s %s\n','len(ptime_ebd)=',int2str(length(ptime_ebd)),'; len(eco_time)=',int2str(length(eco_time)));
-    disp(display_String)
-    display_String = sprintf('%s %s %s %s\n','len(~isnan(ptime_ebd))=',int2str(length(~isnan(ptime_ebd))),'; len(~isnan(eco_time))=',int2str(length(~isnan(eco_time))));
-    disp(display_String)
+%     save('timeBases.mat','ptime_ebd','eco_time');
+%     % science time or eco time
+%     display_String = sprintf('%s %s %s %s\n','len(ptime_ebd)=',int2str(length(ptime_ebd)),'; len(eco_time)=',int2str(length(eco_time)));
+%     disp(display_String)
+%     display_String = sprintf('%s %s %s %s\n','len(~isnan(ptime_ebd))=',int2str(length(~isnan(ptime_ebd))),'; len(~isnan(eco_time))=',int2str(length(~isnan(eco_time))));
+%     disp(display_String)
 end
 
 sampleInterval_Centers = [-1 0 0.1 1 2 3 4 5 10 30 100 300 1000 3000];
 
 % Look at science time
-figure; plot(ptime_ebd,'bo-'); title('Sample time for sci-m-present-time, before sorting'); xlabel('Sample Number'); ylabel('Secs since 1/1/1970');
-ptime_ebdgt0 = ptime_ebd(ptime_ebd>0);
-plot0 = zeros(1,length(ptime_ebdgt0));
-figure; plot(ptime_ebdgt0,plot0,'bo-'); title('Sample time for sci-m-present-time>0, before sorting'); xlabel('Secs since 1/1/1970');
-figure; plot(diff(ptime_ebdgt0),'bo-'); title('Sample interval for sci-m-present-time>0, before sorting'); xlabel('Sample Number'); ylabel('Secs');
-[N,X] = hist(diff(ptime_ebdgt0)); 
-figure; plot(X,N,'ko-'); title('Histogram of sample interval for sci-m-present-time>0, before sorting'); xlabel('Secs');
+% figure; plot(ptime_ebd,'bo-'); title('Sample time for sci-m-present-time, before sorting'); xlabel('Sample Number'); ylabel('Secs since 1/1/1970');
+% ptime_ebdgt0 = ptime_ebd(ptime_ebd>0);
+% plot0 = zeros(1,length(ptime_ebdgt0));
+% figure; plot(ptime_ebdgt0,plot0,'bo-'); title('Sample time for sci-m-present-time>0, before sorting'); xlabel('Secs since 1/1/1970');
+% figure; plot(diff(ptime_ebdgt0),'bo-'); title('Sample interval for sci-m-present-time>0, before sorting'); xlabel('Sample Number'); ylabel('Secs');
+% [N,X] = hist(diff(ptime_ebdgt0)); 
+% figure; plot(X,N,'ko-'); title('Histogram of sample interval for sci-m-present-time>0, before sorting'); xlabel('Secs');
 
 if timeBase_is_eco_time
-    % Look at eco time
-    figure; plot(eco_time,'bo-'); title('Sample time for eco'); xlabel('Sample Number'); ylabel('Secs since 1/1/1970');
-    eco_timegt0 = eco_time(eco_time>0);
-    plot0 = zeros(1,length(eco_timegt0));
-    figure; plot(eco_timegt0,plot0,'ro-'); title('Sample time>0 for eco, before sorting'); xlabel('Secs since 1/1/1970');
-    figure; plot(diff(eco_timegt0),'bo-'); title('Sample interval for eco>0, before sorting'); xlabel('Sample Number'); ylabel('Secs');
-    [N,X] = hist(diff(eco_timegt0)); 
-    figure; plot(X,N,'ko-'); title('Histogram of sample interval for eco, before sorting'); xlabel('Secs');
-
-    % Compare time bases
-    plot0 = zeros(1,length(ptime_ebdgt0));
-    figure; plot(ptime_ebdgt0,plot0,'bo-'); hold on;
-    plot0 = zeros(1,length(eco_timegt0));
-    plot(eco_timegt0,plot0,'ro-'); hold on;
-    plot0 = zeros(1,length(ptime_ebdgt0(eco_time<=0)));
-    plot(ptime_ebd(eco_time<=0),plot0,'k+-'); 
-    legend('sci','eco>0','sci when eco=0'); xlabel('Secs since 1/1/1970');
+%     % Look at eco time
+%     figure; plot(eco_time,'bo-'); title('Sample time for eco'); xlabel('Sample Number'); ylabel('Secs since 1/1/1970');
+%     eco_timegt0 = eco_time(eco_time>0);
+%     plot0 = zeros(1,length(eco_timegt0));
+%     figure; plot(eco_timegt0,plot0,'ro-'); title('Sample time>0 for eco, before sorting'); xlabel('Secs since 1/1/1970');
+%     figure; plot(diff(eco_timegt0),'bo-'); title('Sample interval for eco>0, before sorting'); xlabel('Sample Number'); ylabel('Secs');
+%     [N,X] = hist(diff(eco_timegt0)); 
+%     figure; plot(X,N,'ko-'); title('Histogram of sample interval for eco, before sorting'); xlabel('Secs');
+% 
+%     % Compare time bases
+%     plot0 = zeros(1,length(ptime_ebdgt0));
+%     figure; plot(ptime_ebdgt0,plot0,'bo-'); hold on;
+%     plot0 = zeros(1,length(eco_timegt0));
+%     plot(eco_timegt0,plot0,'ro-'); hold on;
+%     plot0 = zeros(1,length(ptime_ebdgt0(eco_time<=0)));
+%     plot(ptime_ebd(eco_time<=0),plot0,'k+-'); 
+%     legend('sci','eco>0','sci when eco=0'); xlabel('Secs since 1/1/1970');
 end
 
 
 %% GET STATS ON L0 DATA
-[N1_chlor,X1_chlor] = hist(chlor);
-[N1_scatter,X1_scatter] = hist(scatter);
+% [N1_chlor,X1_chlor] = hist(chlor);
+% [N1_scatter,X1_scatter] = hist(scatter);
 
 
 %% SOME QC
@@ -305,8 +305,8 @@ ptime_datenum = ptime/3600/24+datenum(1970, 1, 1, 0, 0, 0);
 
 
 %% PLOT STATS ON L0 DATA AFTER QC (BOUNDS)
-[N2_chlor,X2_chlor] = hist(chlor);
-[N2_scatter,X2_scatter] = hist(scatter);
+% [N2_chlor,X2_chlor] = hist(chlor);
+% [N2_scatter,X2_scatter] = hist(scatter);
 %% More QC
 %Clean Chlorophyll by getting rid of the spike at the beginning of some dives.
 gap = diff(ptime_datenum);      %Locate the beginning of dives 
@@ -430,11 +430,11 @@ save(strMatFileName,...
 
 
  %% PLOT STATS
-figure; semilogy(X1_chlor,N1_chlor,'ko-'); hold on;
-        semilogy(X2_chlor,N2_chlor,'rs--'); 
-        xlabel('chlor'); ylabel('Num Occurs'); 
-        legend('L0','L0+Bounds');
-figure; semilogy(X1_scatter,N1_scatter,'ko-'); hold on;
-        semilogy(X2_scatter,N2_scatter,'rs--'); 
-        xlabel('scatter'); ylabel('Num Occurs');
-        legend('L0','L0+Bounds');
+% figure; semilogy(X1_chlor,N1_chlor,'ko-'); hold on;
+%         semilogy(X2_chlor,N2_chlor,'rs--'); 
+%         xlabel('chlor'); ylabel('Num Occurs'); 
+%         legend('L0','L0+Bounds');
+% figure; semilogy(X1_scatter,N1_scatter,'ko-'); hold on;
+%         semilogy(X2_scatter,N2_scatter,'rs--'); 
+%         xlabel('scatter'); ylabel('Num Occurs');
+%         legend('L0','L0+Bounds');

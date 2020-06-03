@@ -1,0 +1,42 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>curl</H1>
+<H2>(./FEM/curl.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>crl=curl(fem_grid_struct,u,v)</pre>
+<HR><H3>Help text</H3>
+<pre>
+
+ CURL - Compute the CURL of a FEM 2-D vector field
+
+        CURL(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,u,v) computes the curl of a 2-D 
+        vector field (u,v) (curl X (u,v)) over the FEM domain 
+        specified by <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>.  The result is a 2-D 
+        scalar field containing the curl, returned to the workspace.
+
+        The computed quantity is:    crl=dv/dx - du/dy
+
+   INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)
+           u,v - u,v vector field
+
+  OUTPUT : crl - curl X (u,v)
+
+    CALL : crl=curl(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,u,v);
+
+        ALL ARGUMENTS ARE REQUIRED.
+
+ Written by : Brian O. Blanton
+ Spring 1998
+
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

@@ -1,0 +1,44 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>v3r</H1>
+<H2>(./IO_Functions/v3r.m)</H2>
+<HR><H3>Help text</H3>
+<pre>
+V3R Dartmouth FEM File Standard Filetype (Description).
+
+       Output format for a 3-D, Steady-state, vector field.
+
+       This filetype is read by the OPNML MATLAB function 
+       <A HREF = "../4.IO_Functions/read_v2c.html">read_v2c</A>.  Type &quot;help <A HREF = "../4.IO_Functions/read_v2c.html">read_v2c</A>&quot; for more information.
+
+       The .v3r file contains 3 header lines:
+          1) The geometric meshname
+          2) User-defined file description line
+          3) NNV, the number of vertical sigme mesh nodes
+             under each horizontal 2-D node.
+
+       Then, there are NN*NNV lines of the form:
+             I  Z(I,J) U(I,J) V(I,J) W(I,J)
+
+       where:  Z(I,J) = vertical coordinate at horizontal node I,
+                        vertical node J (MKS)
+		(U,V,W) = (x,y,z) vector amplitudes of the 3-D
+		          velocity at node (I,J)
+               J=1,NNV - the inner loop over 1-D vertical nodes
+               I=1,NN  - the outer loop over 2-D horizontal nodes
+               NN = the number of horizontal nodes in the mesh
+ 
+      See the document &quot;DATA FILE STANDARDS FOR THE GULF OF MAINE PROJECT&quot;
+      for more details. 
+</pre>
+<HR><H3>Cross-Reference Information</H3>This  is called by
+<pre><UL>
+<LI><A HREF = "../4.IO_Functions/read_fem_data.html">read_fem_data</A>  ./IO_Functions/read_fem_data.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

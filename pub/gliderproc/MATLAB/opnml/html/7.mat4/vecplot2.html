@@ -1,0 +1,64 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./mat4]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>vecplot2</H1>
+<H2>(./mat4/vecplot2.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>retval=vecplot2(xin,yin,uin,vin,sc,sclab,scale_xor,scale_yor)</pre>
+<HR><H3>Help text</H3>
+<pre>
+VECPLOT2 routine to plot vectors.  
+ VECPLOT2 draws vectors on the current figure, at (x,y)
+ locations determined in one of two ways.  If the first
+ argument to VECPLOT is a fem_grid_struct, then VECPLOT
+ extracts the FEM domain coordinates as the vector origins.
+ Otherwise, the user supplies the (x,y) coordinates
+ explicitly.  This flexibility exists because vector
+ plotting does not require any knowledge of nodal
+ connectivity, and perhaps the (u,v) data are not
+ from a FEM model output.
+
+ VECPLOT scales the magnitude of
+ (u,v) by the magnitude of max(abs(u,v)) and then
+ forces a vector of magnitude sc to be 10% of the x data
+ range.  By default, sc = 1., so that a 1 m/s vector will
+ be scaled to 10% of the x data range.  If sc=.5, then
+ a vector magnitude of 50 cm/s  will be scaled to 10% of the
+ x data range.  Decreasing sc serves to make the vectors
+ appear larger.  VECPLOT then prompts the user to place
+ the vector scale on the figure, unless scale_xor,scale_yor
+ is specified (see below).
+
+ hv=vecplot(x,y,u,v,sc,sclab) 
+ OR 
+ hv=vecplot(fem_grid_struct,u,v,sc,sclab)
+
+      
+   INPUT:   fem_grid_struct  (from LOADGRID, see FEM_GRID_STRUCT)
+            OR
+            x,y    - vector origins
+            u,v    - vector amplitudes
+            These inputs are optional, but if one is needed, all
+            preceeding it wil be required.
+            sc     - vector scaler; (optional; default = 1.)
+            sclab  - label for vector scale; (optional; default = 'cm/s')
+            scale_xor,scale_yor  -  location to place vector scale
+
+  OUTPUT:   h - vector of handles to the vector lines drawn, the 
+                scale vector, and the scale vector text.
+
+   NOTES:   VECPLOT requires atleast 2 coordinates and vectors.
+
+    CALL:   hv=vecplot(x,y,u,v,sc,sclab)
+     or
+            hv=vecplot(fem_grid_struct,u,v,sc,sclab)
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

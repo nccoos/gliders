@@ -1,0 +1,60 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FEM]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>lcontour</H1>
+<H2>(./FEM/lcontour.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>chandle=lcontour(fem_grid_struct,Q,cval,p1,v1,p2,v2,p3,v3,p4,v4,...</pre>
+<HR><H3>Help text</H3>
+<pre>
+LCONTOUR contour a scalar on a FEM grid.
+   LCONTOUR contours a scalar field on the input FEM grid.
+   LCONTOUR accepts a vector of values to be contoured 
+   over the provided mesh.  
+
+   INPUT : <A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A> (from <A HREF = "../3.FEM/loadgrid.html">LOADGRID</A>, see <A HREF = "../3.FEM/fem_grid_struct.html">FEM_GRID_STRUCT</A>)
+           Q    - scalar to be contoured upon; must be a 1-D vector 
+                  or the single character 'z', IN SINGLE QUOTES!!
+           cval - vector of values to contour
+
+           In order to contour the FEM domain bathymetry, pass
+           in the string 'z' in place of an actual scalar field Q.
+           You could, of course, pass in the actual bathymetry as
+           the scalar to contour.  Otherwise, Q must be a 1-D vector
+           with length equal to the number of nodes in the FEM mesh.
+
+           The parameter/value pairs currently allowed in the LCONTOUR  
+           function are as follows (default values appear in {}) :
+
+                Color       {'r' = red}
+                LineStyle   {'-' = solid}
+                LineWidth   {0.5 points; 1 point = 1/72 inches}
+                MarkerSize  {6 points}
+
+           See the Matlab Reference Guide entry on the LINE command for
+           a complete description of parameter/value pair specification.
+
+           The idea and some of the constructs used in pv decoding
+           in this routine come from an unreleased MathWorks function 
+           called polar2.m written by John L. Galenski III  
+           and provided by Jeff Faneuff.
+
+  OUTPUT :  h - the handle to the contour line(s) drawn
+
+    CALL : &gt;&gt; h=lcontour(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,Q,cval,p1,v1,p2,v2,...)
+     or
+           &gt;&gt; h=lcontour(<A HREF = "../3.FEM/fem_grid_struct.html">fem_grid_struct</A>,'z',cval,p1,v1,p2,v2,...)
+
+ Written by : Brian O. Blanton
+ 
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function calls
+<pre><UL>
+<LI><A HREF = "../3.FEM/is_valid_struct.html">is_valid_struct</A>./FEM/is_valid_struct.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

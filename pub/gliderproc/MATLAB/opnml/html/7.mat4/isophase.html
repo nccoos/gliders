@@ -1,0 +1,50 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./mat4]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>isophase</H1>
+<H2>(./mat4/isophase.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>chandle=isophase(elems,x,y,Q,cval,p1,v1,p2,v2,p3,v3,p4,v4,...</pre>
+<HR><H3>Help text</H3>
+<pre>
+ISOPHASE contour a vector of scalar (phase) values on a FEM grid.
+   ISOPHASE accepts a vector of values to be contoured 
+   over the provided mesh.  ISOPHASE expects the element file to 
+   be either 3 or 4 columns wide.  If elems is 4 columns wide, ISOPHASE 
+   assumes the first column is the element number and strips 
+   it away.
+
+ Input:    elems - list of nodes per element
+           x,y - xy locations of nodes; each must be 1-D
+           Q - scalar to be contoured upon; must be 1-D
+           cval - vector of values to contour
+
+           The parameter/value pairs currently allowed in the isophase  
+           function are as follows ( default values appear in {} ) :
+
+                Color       {'r' = red}
+                LineStyle   {'-' = solid}
+                LineWidth   {0.5 points; 1 point = 1/72 inches}
+                MarkerSize  {6 points}
+
+           See the Matlab Reference Guide entry on the LINE command for
+           a complete description of parameter/value pair specification.
+
+           The idea and some of the constructs used in pv decoding
+           in this routine come from an unreleased MathWorks function 
+           called polar2.m written by John L. Galenski III  
+           and provided by Jeff Faneuff.
+
+ Output:  isophase returns the handle to the contour line drawn
+
+ Call as: h=isophase(elems,x,y,Q,cval,p1,v1,p2,v2,...)
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

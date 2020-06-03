@@ -1,0 +1,52 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_s2r</H1>
+<H2>(./IO_Functions/read_s2r.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data,gridname]=read_s2r(fname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_S2R read a FEM output file of <A HREF = "../4.IO_Functions/s2r.html">s2r</A> filetype.
+   READ_S2R is part of a suite of OPNML I/O functions  
+   to read specific filetypes pertaining to FEM model  
+   input and output.   These functions allow the user to
+   get these data files into MATLAB without copying the
+   files and removing the header info by hand.
+
+   READ_S2R reads the FEM filetype <A HREF = "../4.IO_Functions/s2r.html">s2r</A>, as detailed in
+   &quot;Data File Standards for the Gulf of Maine Project&quot;
+   from the Numerical Methods Laboratory at Dartmouth
+   College.  (This document is located in the OPNML
+   notebook under External Documents.)  There are two
+   columns, the first of which is the node number.  The
+   second column is floating point.  
+
+   Input :   If fname is omitted, READ_S2R enables a file browser
+             with which the user can specify the .<A HREF = "../4.IO_Functions/s2r.html">s2r</A> file.
+
+             Otherwise, fname is the name of the <A HREF = "../4.IO_Functions/s2r.html">s2r</A> file, relative 
+             or absolute (fullpath), including the suffix '<A HREF = "../4.IO_Functions/s2r.html">s2r</A>'.
+             This input is a string so it must be enclosed in single 
+             quotes. The header lines are discarded.
+
+  Output :   The data part is returned in the variable data.
+             The domain name is returned in gname 
+
+             Call READ_S2R as:
+             &gt;&gt; [data,gname]=read_s2r(fname);
+
+             If READ_S2R cannot locate the file, it exits, returning 
+             a -1 instead of the data matrix.
+
+ Call as: &gt;&gt; [data,gname]=read_s2r(fname);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

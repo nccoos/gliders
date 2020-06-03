@@ -1,0 +1,52 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_v2r</H1>
+<H2>(./IO_Functions/read_v2r.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data,gridname]=read_v2r(fname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_V2R read a FEM output file of .<A HREF = "../4.IO_Functions/v2r.html">v2r</A> filetype.
+   READ_V2R is part of a suite of OPNML I/O functions  
+   to read specific filetypes pertaining to FEM model  
+   input and output.   These functions allow the user to
+   get these data files into MATLAB without copying the
+   files and removing the header info by hand.
+
+   READ_V2R reads the ascii filetype .<A HREF = "../4.IO_Functions/v2r.html">v2r</A>, as detailed in 
+   &quot;Data File Standards for the Gulf of Maine Project&quot; from 
+   the Numerical Methods Laboratory at Dartmouth College.
+   There are three columns, the 
+   first of which is the node number.  The second and third   
+   columns are floating point numbers.  The filetype suffix
+   ('.<A HREF = "../4.IO_Functions/v2r.html">v2r</A>') must be included in the input file name.   
+
+   Input :   If fname is omitted, READ_V2R enables a file browser
+             with which the user can specify the .<A HREF = "../4.IO_Functions/v2r.html">v2r</A> file.
+
+             Otherwise, fname is the name of the file, relative or 
+             absolute (fullpath), including the '.<A HREF = "../4.IO_Functions/v2r.html">v2r</A>' suffix; 
+             This input is a string so it must be enclosed in single 
+             quotes. The comment line is discarded.
+
+  Output :   Call READ_V2R as:
+             &gt;&gt; [data,gname]=read_v2r(fname);
+             The domain name will be returned in &quot;gname&quot;.
+             The node counter,  amplitudes  of the u and v
+             components of the vector field are returned in &quot;data&quot;.
+
+             If READ_V2R cannot locate the file, it exits, returning 
+             a -1 instead of the data matrix.
+
+ Call as: [data,gname]=read_v2r(fname);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

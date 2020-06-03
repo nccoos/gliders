@@ -1,0 +1,33 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>write_bat</H1>
+<H2>(./IO_Functions/write_bat.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>err=write_bat(z,fname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+WRITE_BAT Write a bathymetry list to disk in .bat format.
+   WRITE_BAT writes an element list to a file, in the .bat
+   format as specified in the Dartmouth/Thayer School/NML
+   File Standards for the Gulf of Maine projects.
+
+   WRITE_BAT(Z,FNAME) opens a file named FNAME in &quot;write&quot; mode and
+   writes the 1-column bathymetry list Z to the filename in FNAME,
+   including the node counter as  the first column of the output 
+   file. The user should include the .bat file extension in the 
+   filename string FNAME.  Both arguments are REQUIRED.
+
+   WRITE_BAT returns a 0 if successful and a -1 if not.
+ 
+</pre>
+<HR><H3>Cross-Reference Information</H3>This function is called by
+<pre><UL>
+<LI><A HREF = "../4.IO_Functions/writegrid.html">writegrid</A>      ./IO_Functions/writegrid.m</LI>
+</UL></pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

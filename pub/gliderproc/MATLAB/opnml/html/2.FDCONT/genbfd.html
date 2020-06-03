@@ -1,0 +1,66 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./FDCONT]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>genbfd</H1>
+<H2>(./FDCONT/genbfd.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[xy,nnx,nny]=gen_fd_points(nx,ny,fem_grid_struct)</pre>
+<HR><H3>Help text</H3>
+<pre>
+GENBFD generate a &quot;basis function data&quot; file for FD contouring 
+   GENBFD computes an information file for contouring FEM
+   node-based data using FD sampled points and MATLAB's
+   contourf routine.  The FD-based plotting tools are part
+   of the FDCONT toolkit.
+
+   Input: fem_grid_struct - FEM domain
+   	   xylist - FD point list (n X 2) or a 1x2 vector
+   		    containing [nx ny], the number of FD
+   		    points in (x,y) to discretize the area.
+   		    See below.
+   	   outflag - flag to output .bfd file to disk
+   		     if outflag==1, the bfd matrix is output to
+   		     the current directory with the name
+   		     &lt;gridname&gt;.bfd.
+   		     if outflag==0, the bfd matrix is returned
+   		     workspace.
+   	   bfdfilename - optional filename to write bfd matrix to.
+
+   	   Arguments 1-3 are required.
+
+   	   If xylist is passed in as [nx ny], GENBFD generates
+   	   the FD points convering an area equal to the
+   	   total extent of the FEM domain.  If only 1 integer
+   	   is passed in, then nx=ny, GENBFD takes the smaller
+   	   of [(xmax-xmin),(ymax-ymin)] for equal spacing.
+
+   Output: The result of GENBFD is a matrix
+   containing the following information.
+
+   For each FD point:
+    x y elem n1 n2 n3 b1 b2 b3 depth
+
+   where x,y = FD point coordinate
+   	  elem = FE element containing x y (==0 if outside FE mesh)
+   	  n1,n2,n3 = node numbers of containing element (or closest)
+   	  b1,b2,b3 = basis function values (or 1 0 0 if outside FEM)
+   	  depth = depth at xy (or depth of closest node)
+
+   For any given FD discretization, the bfd matrix need only be
+   computed once.  The bfd matrix is passed to <A HREF = "../2.FDCONT/fe2fd.html">FE2FD</A> to perform
+   the actual FE to FD interpolation.
+
+   Call:  bfd=genbdf(fem_grid_struct,xylist,outflag)
+     OR   bfd=genbdf(fem_grid_struct,xylist,outflag,bfdfilename)
+     OR   bfd=genbdf(fem_grid_struct,[nx ny],outflag,bfdfilename)
+
+   Written by: Brian Blanton (Spring 99) to implement
+   Chris Naimie's &quot;bfd&quot; file in MATLAB.
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>

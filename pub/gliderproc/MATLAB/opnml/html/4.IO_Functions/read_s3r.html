@@ -1,0 +1,57 @@
+<TITLE>/</TITLE>
+<BODY>
+<A HREF = "index.html">[Index for ./IO_Functions]</A>
+<A HREF = "../index.html">[Return to Master Index]</A>
+<H1>read_s3r</H1>
+<H2>(./IO_Functions/read_s3r.m)</H2>
+<HR><H3>Function Synopsis</H3>
+<pre>[data,nnv,gname]=read_s3r(fname)</pre>
+<HR><H3>Help text</H3>
+<pre>
+READ_S3R read a FEM output file of .<A HREF = "../4.IO_Functions/s3r.html">s3r</A> filetype.
+   READ_S3R is part of a suite of OPNML I/O functions  
+   to read specific filetypes pertaining to FEM model  
+   input and output.   These functions allow the user to
+   get these data files into MATLAB without copying the
+   files and removing the header info by hand.
+
+   READ_S3R reads the ascii filetypes .<A HREF = "../4.IO_Functions/s3r.html">s3r</A>,
+   as detailed in &quot;Data File Standards for the Gulf of Maine 
+   Project&quot; from the Numerical Methods Laboratory at Dartmouth
+   College.  (This document is located in the OPNML notebook 
+   under External Documents.)  There are three columns, the 
+   first of which is the node number.  The second and third  
+   columns are floating point numbers.  The filetype suffix
+   ('.<A HREF = "../4.IO_Functions/s3r.html">s3r</A>') must be included in the input file name.    
+
+   Input :   If fname is omitted, READ_S3R enables a file browser
+             with which the user can specify the .<A HREF = "../4.IO_Functions/s3r.html">s3r</A> file.
+
+             Otherwise, fname is the name of the file, relative or 
+             absolute (fullpath), including the '.<A HREF = "../4.IO_Functions/s3r.html">s3r</A>' suffix; 
+             This input is a string so it must be enclosed in 
+             single quotes. The comment line is discarded.
+
+  Output :   Call READ_S3R as:
+             &gt;&gt; [data,nnv,gname]=read_s3r(fname);
+             The domain name will be returned in &quot;gname&quot;.
+             The number of vertical nodes is returned in &quot;nnv&quot;.
+             The node counter, depth and value of the scalar field
+             are returned in &quot;data&quot;.
+
+             If READ_S3R cannot locate the file, it exits, returning 
+             a -1 instead of the data matrix.
+
+   NOTES :   The .<A HREF = "../4.IO_Functions/s3r.html">s3r</A> filetype contains 3-D data; i.e., real-valued
+             scalar data at each vertical node per horizontal node.
+
+ Call as: [data,nnv,gname]=read_s3r(fname);
+
+ Written by : Brian O. Blanton
+
+</pre>
+<HR>
+Produced by <A HREF="http://www.nd.edu/Courses/kantor/matlab/mat2html">mat2html</A> on Tue Feb  2 16:15:45 EST 1999
+<BR>
+Cross-Directory links are: OFF<BR>
+</BODY>
