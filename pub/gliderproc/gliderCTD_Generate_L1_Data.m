@@ -341,7 +341,7 @@ ctd_time = ctd_time(i);
 % These values chosen from looking at ramses, may need different set for 
 % pelagia
 switch projectLabel
-    case 'PEACH_2017' %'LongBay_2012'
+    case {'SECOORA_2016', 'PEACH_2017'} %'LongBay_2012'
         switch strGliderName
             case 'Ramses'
                 ib=find(abs(diff(temp))>1.);
@@ -743,13 +743,13 @@ save(strMatFileName,...
      'ptime',...
      'ptime_datenum');
 
-x.hv = hv;
-x.pitch = pitch;
-x.cond = cond;
-x.temp = temp;
-x.gliderVelocity = gliderVelocity;
-x.avgDepthRate = avgDepthRate;
- save('ramsesD4_x.mat','x');
+% x.hv = hv;
+% x.pitch = pitch;
+% x.cond = cond;
+% x.temp = temp;
+% x.gliderVelocity = gliderVelocity;
+% x.avgDepthRate = avgDepthRate;
+%  save('ramsesD4_x.mat','x');
 
  %% PLOT STATS
 % figure; semilogy(X1_temp,N1_temp,'ko-'); hold on;
